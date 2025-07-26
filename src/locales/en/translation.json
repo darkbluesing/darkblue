@@ -1,0 +1,254 @@
+{
+  "title": "My Bias Tendency Test",
+  "select_language": "Select Language",
+  "questions": [
+    {"question": "Please select your gender", "options": [
+      {"label": "Male", "value": 0},
+      {"label": "Female", "value": 0},
+      {"label": "Non-binary", "value": 0},
+      {"label": "Other", "value": 0}
+    ]},
+    {"question": "Please select your marital status", "options": [
+      {"label": "Single", "value": 0},
+      {"label": "Married", "value": 0},
+      {"label": "Divorced", "value": 0},
+      {"label": "Widowed", "value": 0}
+    ]},
+    {"question": "Please select your race", "options": [
+      {"label": "Asian", "value": 0},
+      {"label": "Caucasian", "value": 0},
+      {"label": "African", "value": 0},
+      {"label": "Hispanic", "value": 0},
+      {"label": "Mixed", "value": 0}
+    ]},
+    {"question": "Please select your age", "options": [
+      {"label": "18-24", "value": 0},
+      {"label": "25-34", "value": 0},
+      {"label": "35-44", "value": 0},
+      {"label": "45-54", "value": 0},
+      {"label": "55-64", "value": 0},
+      {"label": "65 or older", "value": 0}
+    ]},
+    {"question": "Please select your religion", "options": [
+      {"label": "Christianity", "value": 0},
+      {"label": "Buddhism", "value": 0},
+      {"label": "Islam", "value": 0},
+      {"label": "Hinduism", "value": 0},
+      {"label": "Judaism", "value": 0},
+      {"label": "None", "value": 0}
+    ]},
+    {"question": "Please select your highest level of education", "options": [
+      {"label": "Elementary school or less", "value": 0},
+      {"label": "Middle school graduate", "value": 0},
+      {"label": "High school graduate", "value": 0},
+      {"label": "University graduate", "value": 0},
+      {"label": "Graduate school or higher", "value": 0}
+    ]},
+    {"question": "What is your current income level?", "options": [
+      {"label": "Low", "value": 0},
+      {"label": "Medium", "value": 0},
+      {"label": "High", "value": 0},
+      {"label": "Very high", "value": 0}
+    ]},
+    {"question": "Please select your current occupation", "options": [
+      {"label": "Student", "value": 0},
+      {"label": "Office worker", "value": 0},
+      {"label": "Self-employed", "value": 0},
+      {"label": "Religious worker", "value": 0},
+      {"label": "Unemployed", "value": 0}
+    ]},
+    {"question": "Where do you mainly live?", "options": [
+      {"label": "City", "value": 0},
+      {"label": "Suburb", "value": 0},
+      {"label": "Rural", "value": 0}
+    ]},
+    {"question": "How many people are in your household?", "options": [
+      {"label": "Alone", "value": 0},
+      {"label": "2-3 people", "value": 0},
+      {"label": "4-6 people", "value": 0},
+      {"label": "7 or more", "value": 0}
+    ]},
+    {"question": "If a foreigner greets you on the street?", "options": [
+      {"label": "Greet naturally", "value": 0},
+      {"label": "Avoid out of embarrassment", "value": 2},
+      {"label": "Ignore and walk by", "value": 3}
+    ]},
+    {"question": "If someone in religious attire sits next to you on the subway?", "options": [
+      {"label": "Don't care", "value": 0},
+      {"label": "Slightly uncomfortable", "value": 2},
+      {"label": "Change seats", "value": 3}
+    ]},
+    {"question": "When talking to a foreigner who is not fluent in English?", "options": [
+      {"label": "Try to understand as much as possible", "value": 0},
+      {"label": "Get annoyed", "value": 2},
+      {"label": "Avoid conversation", "value": 3}
+    ]},
+    {"question": "If a child from a multicultural family is friends with your child?", "options": [
+      {"label": "Good", "value": 0},
+      {"label": "Worried", "value": 2},
+      {"label": "Uncomfortable", "value": 3}
+    ]},
+    {"question": "If a person of another race moves into your neighborhood?", "options": [
+      {"label": "No problem", "value": 0},
+      {"label": "The atmosphere might change", "value": 2},
+      {"label": "Not welcome", "value": 3}
+    ]},
+    {"question": "If a foreigner asks you a question in your native language with a strange accent?", "options": [
+      {"label": "Try to understand till the end", "value": 0},
+      {"label": "Laugh", "value": 2},
+      {"label": "Ignore", "value": 3}
+    ]},
+    {"question": "If a foreign boss joins your company?", "options": [
+      {"label": "Respect", "value": 0},
+      {"label": "Doubt their ability", "value": 2},
+      {"label": "Hard to accept", "value": 3}
+    ]},
+    {"question": "If a foreigner says 'strange taste' about your country's food?", "options": [
+      {"label": "Think it's a cultural difference", "value": 0},
+      {"label": "Feel it's rude", "value": 2},
+      {"label": "Feel offended", "value": 3}
+    ]},
+    {"question": "If you do a team project with someone of a different skin color?", "options": [
+      {"label": "No difference", "value": 0},
+      {"label": "Need to adapt", "value": 2},
+      {"label": "Reluctant", "value": 3}
+    ]},
+    {"question": "If a foreigner speaks loudly or gestures a lot?", "options": [
+      {"label": "Just cultural expression", "value": 0},
+      {"label": "Can be annoying", "value": 2},
+      {"label": "Feels rude", "value": 3}
+    ]},
+    {"question": "If a colleague with a specific religion asks for prayer time at your workplace?", "options": [
+      {"label": "Respect", "value": 0},
+      {"label": "Understand but uncomfortable", "value": 2},
+      {"label": "Cannot accept", "value": 3}
+    ]},
+    {"question": "If foreigners appear frequently on TV?", "options": [
+      {"label": "Diversity is good", "value": 0},
+      {"label": "Seems a bit much", "value": 2},
+      {"label": "Uncomfortable", "value": 3}
+    ]},
+    {"question": "How do you feel about a celebrity of a different race being a TV commercial model?", "options": [
+      {"label": "Welcome", "value": 0},
+      {"label": "Unfamiliar", "value": 2},
+      {"label": "Feel aversion", "value": 3}
+    ]},
+    {"question": "If a multicultural festival is held in your neighborhood?", "options": [
+      {"label": "Want to participate", "value": 0},
+      {"label": "Will just watch", "value": 2},
+      {"label": "Will not go", "value": 3}
+    ]},
+    {"question": "If there is an internationally married couple around you?", "options": [
+      {"label": "Natural", "value": 0},
+      {"label": "Seems difficult due to cultural differences", "value": 2},
+      {"label": "Doesn't fit in", "value": 3}
+    ]},
+    {"question": "If your child brings a foreign friend home?", "options": [
+      {"label": "Welcome them", "value": 0},
+      {"label": "Become cautious", "value": 2},
+      {"label": "Not pleased", "value": 3}
+    ]},
+    {"question": "If a foreigner makes a political statement about your country?", "options": [
+      {"label": "Freedom of expression", "value": 0},
+      {"label": "Should be careful", "value": 2},
+      {"label": "Not qualified", "value": 3}
+    ]},
+    {"question": "If a person of another race acquires your nationality?", "options": [
+      {"label": "No problem", "value": 0},
+      {"label": "Could be confusing", "value": 2},
+      {"label": "Oppose", "value": 3}
+    ]},
+    {"question": "If a child of an immigrant attends your country's school?", "options": [
+      {"label": "Of course", "value": 0},
+      {"label": "Worried about adaptation", "value": 2},
+      {"label": "Might harm Korean culture", "value": 3}
+    ]},
+    {"question": "If a foreign tourist does not observe etiquette while traveling?", "options": [
+      {"label": "Think it's a cultural difference", "value": 0},
+      {"label": "Want to point out manners", "value": 2},
+      {"label": "Get angry", "value": 3}
+    ]}
+  ],
+  "solutions": {
+    "0-10": {
+      "analysis": "You have an amazingly open mind! You show excellent awareness in respecting and embracing diversity. This open attitude will have a positive impact on those around you. Please continue to take an interest in other cultures and people.",
+      "tips": [
+        "Use your positive influence to inform those around you about the importance of respecting diversity and actively contribute to leading conversations without prejudice.",
+        "Explore unfamiliar cultures you haven't experienced yet, and broaden your horizons by looking for related books, movies, and documentaries. If possible, try to experience them firsthand.",
+        "Although you have very low bias, social stereotypes can seep in subtly. Occasionally check your thoughts and actions and maintain a constantly growing attitude."
+      ]
+    },
+    "11-20": {
+      "analysis": "Excellent! You have a very high level of understanding in embracing various cultures and perspectives. Your efforts to overcome unconscious bias are shining. Your open mind will contribute to making a better world.",
+      "tips": [
+        "Expand your exchanges with people from various cultural backgrounds and continue to try to deeply understand their daily lives and values. Participating in online and offline communities is also good.",
+        "Learn more about cases of prejudice or discrimination in society, and create opportunities to share and reflect on them with those around you.",
+        "Empathize more deeply with the difficulties and discrimination experienced by various minority groups, and practice looking at the world from their perspective."
+      ]
+    },
+    "21-30": {
+      "analysis": "You respect diversity and have a positive attitude toward accepting new cultures. In most situations, you treat people without prejudice and your efforts for a better society are impressive. Keep this mindset going.",
+      "tips": [
+        "If you have stereotypes about certain groups encountered in media or social conventions, look at them critically and ask yourself, 'Is this really true?'",
+        "When talking to people from other cultures, listen sincerely to their stories and experiences without prejudice. Active questions and listening increase understanding.",
+        "Consume a variety of arts and media: Watch movies, read books, listen to music, and appreciate artworks that deal with various races and cultures to naturally broaden your understanding of their lives and values."
+      ]
+    },
+    "31-40": {
+      "analysis": "You are generally open-minded, but unconscious bias may appear in some situations. This is natural, so don't worry. If you reflect on yourself and listen a little more to other perspectives, you can grow even more.",
+      "tips": [
+        "If you have automatic thoughts or feelings about certain races or cultures, pause and reflect on where those thoughts came from. Recognizing your own bias is the beginning of change.",
+        "When receiving information about certain groups, try to have a balanced perspective by looking for content produced by the group itself or materials from other perspectives, not just mainstream media.",
+        "Intentionally create opportunities for positive interactions with people from different backgrounds. Small experiences add up and help break down prejudice."
+      ]
+    },
+    "41-50": {
+      "analysis": "You may have unconscious bias in certain situations. This may stem from social background or experience. You need to check your awareness and try to understand the stories of people different from you more deeply. Try to be a little more open-minded.",
+      "tips": [
+        "Analyze which questions or situations in the test resulted in biased responses. Identify which types of prejudice (e.g., race, religion, appearance) you are more vulnerable to and focus your efforts.",
+        "Practice 'role-playing' by putting yourself in someone else's shoes, or watch documentaries about human rights issues of certain groups to practice emotional empathy.",
+        "Before meeting people from new cultures or unfamiliar groups, learn about their cultural backgrounds or social customs in advance. This helps reduce misunderstandings and show respect."
+      ]
+    },
+    "51-60": {
+      "analysis": "You may have stereotypes or prejudices about certain groups. Such prejudices can narrow your perspective and hinder true communication with others. It is important to reflect on yourself and actively try to understand other cultures.",
+      "tips": [
+        "Acquire knowledge by reading professional or liberal arts books about the psychological and social causes and effects of prejudice. Understanding how prejudice is formed and works is important.",
+        "Participate in prejudice reduction and diversity respect education programs or lectures to learn from experts' perspectives and gain new insights through group activities.",
+        "Actively create opportunities to communicate and interact directly with people of races or cultures you think you are prejudiced against. For example, you can participate in volunteer activities."
+      ]
+    },
+    "61-70": {
+      "analysis": "You need to broaden your understanding of various cultures and people. There may be prejudices formed unconsciously, which can unintentionally hurt others. From now on, consciously challenge prejudice and try to change.",
+      "tips": [
+        "When negative thoughts or stereotypes about certain groups come to mind, consciously look for positive cases or information that contradict those thoughts. It's a process of training your brain to make new connections.",
+        "Carefully ask trusted acquaintances or friends if your words or actions might feel discriminatory, and have an open attitude to accept their opinions.",
+        "Read biographies of great or ordinary people from various races and cultural backgrounds, and form a human bond through their trials and achievements."
+      ]
+    },
+    "71-80": {
+      "analysis": "You are likely to have strong prejudiced perceptions about certain races or cultures. Such prejudices can have a negative impact not only on yourself but also on society as a whole. It is urgent to deeply reflect on your thoughts and actions and make a sincere effort to accept new perspectives.",
+      "tips": [
+        "Learn deeply about how the history of racism or discrimination against certain groups was formed and what pain it caused. Recognizing the seriousness of prejudice through historical facts is important.",
+        "Recognize how your careless words or actions can hurt others and consciously try to stop such behavior immediately. If necessary, have the courage to apologize.",
+        "Find and benchmark people around you or public figures who respect diversity and live without prejudice, and motivate yourself to change by following their behaviors and ways of thinking."
+      ]
+    },
+    "81-90": {
+      "analysis": "Your results show a very strong tendency toward prejudice. This means you have negative stereotypes about certain groups and may have serious discriminatory perceptions. It is urgent to respect the diversity of society and value everyone's human rights with deep reflection and effort for change.",
+      "tips": [
+        "If it is difficult to solve alone, actively consider consulting with human rights education experts, psychological counselors, or professionals in related fields to understand your prejudice more deeply and seek solutions.",
+        "Consciously distance yourself from environments that can reinforce your prejudice (e.g., certain communities, media content), and instead expose yourself to environments that support diversity.",
+        "Take an interest in and participate in the activities of civic groups for human rights protection and diversity promotion. You can change your perception by standing in solidarity with people who actually fight discrimination."
+      ]
+    },
+    "91-100": {
+      "analysis": "An extreme prejudice index has appeared. This suggests that you are very likely to have very strong and entrenched negative perceptions of various races and cultures. Such prejudice can go beyond your responsibility as a member of society and cause serious social problems. It is very important to fundamentally reflect on your perceptions and make immediate and active efforts for change, including seeking expert help.",
+      "tips": [
+        "Immediately participate in professional psychological treatment or intensive education programs to fundamentally reconstruct your perceptions to eliminate prejudice.",
+        "Recognize that your words and actions can seriously hurt others, and immediately stop all prejudiced/discriminatory words and actions. If you find it difficult to control yourself, seek help from those around you.",
+        "Deeply reflect on the negative impact of prejudice on society as a whole and your role in it. Focus on accepting the universal value that all human dignity is equal."
+      ]
+    }
+  }
+} 
