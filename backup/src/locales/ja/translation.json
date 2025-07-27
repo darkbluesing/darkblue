@@ -1,0 +1,11 @@
+{
+  "title": "私の差別的傾向テスト",
+  "question": "次のうち、Pythonのリストに値を追加するメソッドはどれですか？",
+  "placeholder": "答えを入力してください",
+  "button": "答えを確認",
+  "answer": "append",
+  "explanation": "Pythonのリストに値を追加するにはappend()メソッドを使います。",
+  "correct": "正解です！",
+  "incorrect": "不正解です。",
+  "select_language": "言語を選択"
+} 
