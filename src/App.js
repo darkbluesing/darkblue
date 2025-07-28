@@ -362,11 +362,12 @@ function App() {
 
   // 언어 변경
   const handleLangChange = (code) => {
-    i18n.changeLanguage(code);
-    setPage("landing");
-    setCurrent(0);
-    setAnswers([]);
-  };
+  localStorage.setItem("lang", code);  // ✅ 이미 추가됨
+  i18n.changeLanguage(code);
+  setPage("landing");
+  setCurrent(0);
+  setAnswers([]);
+};
 
   // 설문 답변
   const handleOptionClick = (value) => {
