@@ -1,11 +1,45 @@
 {
-  "title": "Mi Test de Tendencia Discriminatoria",
-  "question": "¿Cuál de los siguientes es el método para agregar un valor a una lista de Python?",
-  "placeholder": "Ingrese su respuesta",
-  "button": "Verificar respuesta",
-  "answer": "append",
-  "explanation": "Para agregar un valor a una lista de Python, use el método append().",
-  "correct": "¡Correcto!",
-  "incorrect": "Incorrecto.",
-  "select_language": "Seleccionar idioma"
-} 
+  "title": "Mi Test de Sesgo Racial",
+  "subtitle": "Mi Test de Sesgo Racial",
+  "start": "Iniciar Test",
+  "prev": "Anterior",
+  "next": "Siguiente",
+  "restart": "Reiniciar Test",
+  "home": "Inicio",
+  "progress": "{current}/{total}",
+  "resultTitle": "Resultados del Test",
+  "resultSubtitle": "Resultados del Test",
+  "biasIndex": "Índice de Sesgo Consciente",
+  "analysis": "Análisis",
+  "solutions": "Sugerencias para el Crecimiento",
+  "disclaimer": "Este resultado es solo para fines educativos y no es un diagnóstico psicológico profesional. Por favor, utilícelo como una herramienta para la reflexión personal y el crecimiento.",
+  "disclaimerLanding": "Este test no es un diagnóstico psicológico y está proporcionado con fines de entretenimiento y educación. Los resultados no juzgan su carácter y están destinados a ser una herramienta para la reflexión personal y el crecimiento.",
+  "intro": "Esta prueba es una herramienta educativa para ayudarte a explorar tus prejuicios inconscientes, aumentar la conciencia sobre la diversidad y obtener soluciones prácticas para tu crecimiento personal.",
+  "important": "Puntos Importantes:",
+  "importantList": [
+    "Esta prueba no etiqueta a nadie como 'racista'",
+    "Los resultados son para la reflexión, no para un diagnóstico psicológico",
+    "Todas las respuestas son anónimas y no se recopilan datos personales",
+    "Los resultados se eliminan cuando cierra el navegador"
+  ],
+  "questions": [
+    {"id": "q01", "type": "demographic", "title": "Seleccione su género", "subtitle": "", "options": [
+      {"text": "Masculino", "value": 1},
+      {"text": "Femenino", "value": 2},
+      {"text": "No binario", "value": 3},
+      {"text": "Otro", "value": 4}
+    ]}
+  ],
+  "solutions": {
+    "0-10": "¡Muestras excelente conciencia de diversidad e inclusión! Tu actitud de mente abierta demuestra una profunda comprensión de diferentes culturas y perspectivas. Continúa siendo una influencia positiva en la promoción del entendimiento y respeto.",
+    "11-20": "Tienes una buena base para entender la diversidad. Con un poco más de conciencia y educación, puedes ser aún más inclusivo y comprensivo de diferentes culturas y perspectivas.",
+    "21-30": "Muestras conciencia moderada de los problemas de diversidad. Considera aprender más sobre diferentes culturas y perspectivas para mejorar tu comprensión y reducir los prejuicios inconscientes.",
+    "31-40": "Puedes tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal. Considera explorar diferentes culturas y perspectivas para ampliar tu comprensión.",
+    "41-50": "Podrías beneficiarte de más educación sobre diversidad e inclusión. Considera buscar recursos y experiencias que puedan ayudarte a entender diferentes perspectivas y culturas.",
+    "51-60": "Puedes tener algunos prejuicios que podrían abordarse a través de la educación y la reflexión personal. Considera aprender más sobre diferentes culturas y perspectivas.",
+    "61-70": "Podrías tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal. Considera explorar diferentes culturas y perspectivas.",
+    "71-80": "Puedes tener algunos prejuicios que podrían abordarse a través de la educación y la reflexión personal. Considera aprender más sobre diferentes culturas y perspectivas.",
+    "81-90": "Podrías tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal. Considera explorar diferentes culturas y perspectivas.",
+    "91-100": "¡Muestras excelente conciencia de diversidad e inclusión! Tu actitud de mente abierta demuestra una profunda comprensión de diferentes culturas y perspectivas. Continúa siendo una influencia positiva en la promoción del entendimiento y respeto."
+  }
+}
