@@ -6,6 +6,7 @@
   NODE_VERSION = "18"
   NPM_VERSION = "9"
   CI = "false"
+  NODE_OPTIONS = "--openssl-legacy-provider"
 
 [[redirects]]
   from = "/*"
