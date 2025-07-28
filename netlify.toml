@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps --force --no-audit && npm run build"
+  command = "npm install --legacy-peer-deps --force --no-audit && npm install ajv@8.12.0 --legacy-peer-deps && npm run build"
   publish = "build"
 
 [build.environment]
