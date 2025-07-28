@@ -362,6 +362,7 @@ function App() {
 
   // 언어 변경
   const handleLangChange = (code) => {
+    localStorage.setItem("lang", code);
     i18n.changeLanguage(code);
     setPage("landing");
     setCurrent(0);
