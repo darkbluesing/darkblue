@@ -75,7 +75,7 @@ function DarkModeToggle() {
     const pref = localStorage.getItem('darkmode');
     if (pref === '1') return true;
     if (pref === '0') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return false; // 기본값을 라이트모드로 설정
   });
   React.useEffect(() => {
     if (dark) {
@@ -327,7 +327,7 @@ function App() {
     const pref = localStorage.getItem('darkmode');
     if (pref === '1') return true;
     if (pref === '0') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return false; // 기본값을 라이트모드로 설정
   });
   // 다크모드 적용
   React.useEffect(() => {
