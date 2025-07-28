@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps --force && npm run build"
+  command = "npm install --legacy-peer-deps --force --no-audit && npm run build"
   publish = "build"
 
 [build.environment]
@@ -8,6 +8,7 @@
   CI = "false"
   NODE_OPTIONS = "--openssl-legacy-provider"
   NPM_CONFIG_LEGACY_PEER_DEPS = "true"
+  NPM_CONFIG_AUDIT = "false"
 
 [[redirects]]
   from = "/*"
