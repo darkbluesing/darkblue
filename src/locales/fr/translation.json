@@ -1,11 +1,45 @@
 {
-  "title": "Mon Test de Tendance Discriminatoire",
-  "question": "Laquelle des méthodes suivantes permet d'ajouter une valeur à une liste Python ?",
-  "placeholder": "Entrez votre réponse",
-  "button": "Vérifier la réponse",
-  "answer": "append",
-  "explanation": "Pour ajouter une valeur à une liste Python, utilisez la méthode append().",
-  "correct": "Bonne réponse !",
-  "incorrect": "Mauvaise réponse.",
-  "select_language": "Choisir la langue"
-} 
+  "title": "Mon Test de Tendance au Racisme",
+  "subtitle": "My Racial Bias Test",
+  "start": "Démarrer le Test",
+  "prev": "Précédent",
+  "next": "Suivant",
+  "restart": "Redémarrer le Test",
+  "home": "Accueil",
+  "progress": "{current}/{total}",
+  "resultTitle": "Résultats du Test",
+  "resultSubtitle": "Résultats du Test",
+  "biasIndex": "Indice de Biais Inconscient",
+  "analysis": "Analyse",
+  "solutions": "Suggestions pour le Croissance",
+  "disclaimer": "Ce résultat est fourni à des fins éducatives uniquement et n'est pas un diagnostic psychologique professionnel. Veuillez l'utiliser comme outil pour la réflexion personnelle et le croissance.",
+  "disclaimerLanding": "Ce test n'est pas un diagnostic psychologique et est fourni à des fins de divertissement et d'éducation. Les résultats ne jugent pas votre personnalité et sont destinés à être un outil pour la réflexion personnelle et le croissance.",
+  "intro": "Ce test est un outil éducatif pour vous aider à explorer vos biais inconscients, à augmenter votre conscience de la diversité et à obtenir des solutions pratiques pour votre croissance personnelle.",
+  "important": "Points Importants:",
+  "importantList": [
+    "Ce test ne marque personne comme 'raciste'",
+    "Les résultats sont pour la réflexion, pas pour un diagnostic psychologique",
+    "Toutes les réponses sont anonymes et aucune information personnelle n'est collectée",
+    "Les résultats sont supprimés lorsque vous fermez le navigateur"
+  ],
+  "questions": [
+    {"id": "q01", "type": "demographic", "title": "Sélectionnez votre sexe", "subtitle": "", "options": [
+      {"text": "Homme", "value": 1},
+      {"text": "Femme", "value": 2},
+      {"text": "Non-binaire", "value": 3},
+      {"text": "Autre", "value": 4}
+    ]}
+  ],
+  "solutions": {
+    "0-10": "Vous montrez une excellente conscience de la diversité et de l'inclusion ! Votre attitude ouverte d'esprit démontre une compréhension profonde des différentes cultures et perspectives. Continuez à être une influence positive dans la promotion de la compréhension et du respect.",
+    "11-20": "Vous avez une bonne base pour comprendre la diversité. Avec un peu plus de conscience et d'éducation, vous pouvez devenir encore plus inclusif et compréhensif des différentes cultures et perspectives.",
+    "21-30": "Vous montrez une conscience modérée des problèmes de diversité. Considérez apprendre plus sur les différentes cultures et perspectives pour améliorer votre compréhension et réduire les biais inconscients.",
+    "31-40": "Vous pouvez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle. Considérez explorer les différentes cultures et perspectives pour élargir votre compréhension.",
+    "41-50": "Vous pourriez bénéficier de plus d'éducation sur la diversité et l'inclusion. Considérez chercher des ressources et des expériences qui peuvent vous aider à comprendre les différentes perspectives et cultures.",
+    "51-60": "Vous pouvez avoir des biais qui pourraient être abordés par l'éducation et la réflexion personnelle. Considérez apprendre plus sur les différentes cultures et perspectives.",
+    "61-70": "Vous pourriez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle. Considérez explorer les différentes cultures et perspectives.",
+    "71-80": "Vous pouvez avoir des biais qui pourraient être abordés par l'éducation et la réflexion personnelle. Considérez apprendre plus sur les différentes cultures et perspectives.",
+    "81-90": "Vous pourriez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle. Considérez explorer les différentes cultures et perspectives.",
+    "91-100": "Vous montrez une excellente conscience de la diversité et de l'inclusion ! Votre attitude ouverte d'esprit démontre une compréhension profonde des différentes cultures et perspectives. Continuez à être une influence positive dans la promotion de la compréhension et du respect."
+  }
+}
