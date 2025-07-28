@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci && npm run build"
+  command = "npm install --legacy-peer-deps --force --no-audit && npm install ajv@8.12.0 --legacy-peer-deps && npm run build"
   publish = "build"
 
 [build.environment]
@@ -7,6 +7,8 @@
   NPM_VERSION = "9.8.1"
   CI = "false"
   NODE_OPTIONS = "--openssl-legacy-provider"
+  NPM_CONFIG_LEGACY_PEER_DEPS = "true"
+  NPM_CONFIG_AUDIT = "false"
 
 [[redirects]]
   from = "/*"
