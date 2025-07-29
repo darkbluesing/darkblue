@@ -1,11 +1,305 @@
 {
-  "title": "Mon Test de Tendance Discriminatoire",
-  "question": "Laquelle des méthodes suivantes permet d'ajouter une valeur à une liste Python ?",
-  "placeholder": "Entrez votre réponse",
-  "button": "Vérifier la réponse",
-  "answer": "append",
-  "explanation": "Pour ajouter une valeur à une liste Python, utilisez la méthode append().",
-  "correct": "Bonne réponse !",
-  "incorrect": "Mauvaise réponse.",
-  "select_language": "Choisir la langue"
-} 
+  "title": "Mon Test de Tendance au Racisme",
+  "subtitle": "My Racial Bias Test",
+  "start": "Démarrer le Test",
+  "prev": "Précédent",
+  "next": "Suivant",
+  "restart": "Redémarrer le Test",
+  "home": "Accueil",
+  "progress": "{current}/{total}",
+  "resultTitle": "Résultats du Test",
+  "resultSubtitle": "Résultats du Test",
+  "biasIndex": "Indice de Biais Inconscient",
+  "analysis": "Analyse",
+  "solutions": "Suggestions pour le Croissance",
+  "disclaimer": "Ce résultat est fourni à des fins éducatives uniquement et n'est pas un diagnostic psychologique professionnel. Veuillez l'utiliser comme outil pour la réflexion personnelle et le croissance.",
+  "disclaimerLanding": "Ce test n'est pas un diagnostic psychologique et est fourni à des fins de divertissement et d'éducation. Les résultats ne jugent pas votre personnalité et sont destinés à être un outil pour la réflexion personnelle et le croissance.",
+  "intro": "Ce test est un outil éducatif pour vous aider à explorer vos biais inconscients, à augmenter votre conscience de la diversité et à obtenir des solutions pratiques pour votre croissance personnelle.",
+  "important": "Points Importants:",
+  "importantList": [
+    "Ce test ne marque personne comme 'raciste'",
+    "Les résultats sont pour la réflexion, pas pour un diagnostic psychologique",
+    "Toutes les réponses sont anonymes et aucune information personnelle n'est collectée",
+    "Les résultats sont supprimés lorsque vous fermez le navigateur"
+  ],
+  "questions": [
+    {"question": "Veuillez sélectionner votre genre", "options": [
+      {"label": "Homme", "value": 0},
+      {"label": "Femme", "value": 0},
+      {"label": "Non-binaire", "value": 0},
+      {"label": "Autre", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre état civil", "options": [
+      {"label": "Célibataire", "value": 0},
+      {"label": "Marié", "value": 0},
+      {"label": "Divorcé", "value": 0},
+      {"label": "Veuf", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre ethnicité", "options": [
+      {"label": "Asiatique", "value": 0},
+      {"label": "Caucasien", "value": 0},
+      {"label": "Africain", "value": 0},
+      {"label": "Hispanique", "value": 0},
+      {"label": "Métis", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre âge", "options": [
+      {"label": "18-24 ans", "value": 0},
+      {"label": "25-34 ans", "value": 0},
+      {"label": "35-44 ans", "value": 0},
+      {"label": "45-54 ans", "value": 0},
+      {"label": "55-64 ans", "value": 0},
+      {"label": "65+ ans", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre religion", "options": [
+      {"label": "Christianisme", "value": 0},
+      {"label": "Bouddhisme", "value": 0},
+      {"label": "Islam", "value": 0},
+      {"label": "Hindouisme", "value": 0},
+      {"label": "Judaïsme", "value": 0},
+      {"label": "Aucune", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre niveau d'éducation le plus élevé", "options": [
+      {"label": "École primaire ou moins", "value": 0},
+      {"label": "Collège", "value": 0},
+      {"label": "Lycée", "value": 0},
+      {"label": "Université", "value": 0},
+      {"label": "École supérieure ou plus", "value": 0}
+    ]},
+    {"question": "Quel est votre niveau de revenu actuel ?", "options": [
+      {"label": "Faible", "value": 0},
+      {"label": "Moyen", "value": 0},
+      {"label": "Élevé", "value": 0},
+      {"label": "Très élevé", "value": 0}
+    ]},
+    {"question": "Veuillez sélectionner votre profession actuelle", "options": [
+      {"label": "Étudiant", "value": 0},
+      {"label": "Employé", "value": 0},
+      {"label": "Indépendant", "value": 0},
+      {"label": "Travailleur religieux", "value": 0},
+      {"label": "Chômeur", "value": 0}
+    ]},
+    {"question": "Où résidez-vous principalement ?", "options": [
+      {"label": "Urbain", "value": 0},
+      {"label": "Suburbain", "value": 0},
+      {"label": "Rural", "value": 0}
+    ]},
+    {"question": "Combien de membres de famille vivez-vous avec ?", "options": [
+      {"label": "Seul", "value": 0},
+      {"label": "2-3 personnes", "value": 0},
+      {"label": "4-6 personnes", "value": 0},
+      {"label": "7+ personnes", "value": 0}
+    ]},
+    {"question": "Si un étranger vous salue dans la rue ?", "options": [
+      {"label": "Salue naturellement", "value": 0},
+      {"label": "Se sent mal à l'aise et évite", "value": 2},
+      {"label": "Ignore et passe", "value": 3}
+    ]},
+    {"question": "Si quelqu'un en tenue religieuse s'assoit à côté de vous dans le métro ?", "options": [
+      {"label": "Ne dérange pas du tout", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Déménage à un autre siège", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un restaurant ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite ce restaurant", "value": 3}
+    ]},
+    {"question": "Si une personne avec un accent différent demande des directions ?", "options": [
+      {"label": "Aide volontiers", "value": 0},
+      {"label": "Aide mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas comprendre", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans votre quartier ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cette zone", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente s'assoit à côté de vous dans le bus ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Déménage à un autre siège", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente au travail ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite de travailler ensemble", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande à emprunter quelque chose ?", "options": [
+      {"label": "Prête volontiers", "value": 0},
+      {"label": "Prête mais se sent mal à l'aise", "value": 2},
+      {"label": "Trouve des excuses pour ne pas prêter", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un magasin ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite ce magasin", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande de l'aide ?", "options": [
+      {"label": "Aide volontiers", "value": 0},
+      {"label": "Aide mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas voir", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente à l'école ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cette classe", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande à rejoindre votre groupe ?", "options": [
+      {"label": "Accueille volontiers", "value": 0},
+      {"label": "Accepte mais se sent mal à l'aise", "value": 2},
+      {"label": "Trouve des excuses pour refuser", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un parc ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite ce parc", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande des directions vers les toilettes ?", "options": [
+      {"label": "Guide volontiers", "value": 0},
+      {"label": "Guide mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas savoir", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans une bibliothèque ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cette bibliothèque", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande à partager une table ?", "options": [
+      {"label": "Partage volontiers", "value": 0},
+      {"label": "Partage mais se sent mal à l'aise", "value": 2},
+      {"label": "Trouve des excuses pour refuser", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un hôpital ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cet hôpital", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande l'heure ?", "options": [
+      {"label": "Dit volontiers", "value": 0},
+      {"label": "Dit mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas entendre", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans une banque ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cette banque", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande à emprunter un stylo ?", "options": [
+      {"label": "Prête volontiers", "value": 0},
+      {"label": "Prête mais se sent mal à l'aise", "value": 2},
+      {"label": "Trouve des excuses pour ne pas prêter", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un bureau de poste ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite ce bureau de poste", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande un mouchoir ?", "options": [
+      {"label": "Donne volontiers", "value": 0},
+      {"label": "Donne mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas en avoir", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans une station-service ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite cette station-service", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande à prendre une photo ?", "options": [
+      {"label": "Prend volontiers", "value": 0},
+      {"label": "Prend mais se sent mal à l'aise", "value": 2},
+      {"label": "Trouve des excuses pour refuser", "value": 3}
+    ]},
+    {"question": "Quand vous voyez une personne d'une race différente dans un dépanneur ?", "options": [
+      {"label": "Aucun sentiment spécial", "value": 0},
+      {"label": "Se sent légèrement mal à l'aise", "value": 2},
+      {"label": "Évite ce magasin", "value": 3}
+    ]},
+    {"question": "Si une personne d'une race différente demande de la monnaie ?", "options": [
+      {"label": "Donne volontiers", "value": 0},
+      {"label": "Donne mais se sent mal à l'aise", "value": 2},
+      {"label": "Fait semblant de ne pas avoir de monnaie", "value": 3}
+    ]}
+  ],
+  "solutions": {
+    "0-10": {
+      "analysis": "Vous montrez une excellente conscience de la diversité et de l'inclusion ! Votre attitude ouverte d'esprit démontre une compréhension profonde des différentes cultures et perspectives.",
+      "tips": [
+        "Continuez à être une influence positive dans la promotion de la compréhension et du respect",
+        "Partagez votre état d'esprit inclusif avec les autres",
+        "Soutenez les initiatives de diversité dans votre communauté"
+      ]
+    },
+    "11-20": {
+      "analysis": "Vous avez une bonne base pour comprendre la diversité. Avec un peu plus de conscience et d'éducation, vous pouvez devenir encore plus inclusif.",
+      "tips": [
+        "Apprenez plus sur les différentes cultures et perspectives",
+        "Recherchez des expériences et interactions diverses",
+        "Remettez en question vos propres hypothèses sur les autres"
+      ]
+    },
+    "21-30": {
+      "analysis": "Vous montrez une conscience modérée des problèmes de diversité. Considérez apprendre plus sur les différentes cultures et perspectives.",
+      "tips": [
+        "Éduquez-vous sur les biais inconscients",
+        "Recherchez des opportunités d'interagir avec des groupes divers",
+        "Pratiquez l'empathie et l'écoute active"
+      ]
+    },
+    "31-40": {
+      "analysis": "Vous pouvez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle.",
+      "tips": [
+        "Lisez des livres et articles sur la diversité et l'inclusion",
+        "Assistez à des ateliers sur les biais inconscients",
+        "Réfléchissez à vos propres expériences et hypothèses"
+      ]
+    },
+    "41-50": {
+      "analysis": "Vous pourriez bénéficier de plus d'éducation sur la diversité et l'inclusion.",
+      "tips": [
+        "Recherchez des ressources sur les différentes cultures",
+        "Pratiquez la pleine conscience et la réflexion personnelle",
+        "Engagez-vous dans des conversations sur la diversité"
+      ]
+    },
+    "51-60": {
+      "analysis": "Vous pouvez avoir des biais qui pourraient être abordés par l'éducation et la réflexion personnelle.",
+      "tips": [
+        "Apprenez sur l'histoire et les expériences de différents groupes",
+        "Pratiquez des exercices de prise de perspective",
+        "Recherchez des commentaires de perspectives diverses"
+      ]
+    },
+    "61-70": {
+      "analysis": "Vous pourriez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle.",
+      "tips": [
+        "Suivez des cours sur la diversité et l'inclusion",
+        "Pratiquez l'humilité culturelle",
+        "Engagez-vous dans des exercices de réflexion personnelle"
+      ]
+    },
+    "71-80": {
+      "analysis": "Vous pouvez avoir des biais qui pourraient être abordés par l'éducation et la réflexion personnelle.",
+      "tips": [
+        "Recherchez le développement professionnel sur la diversité",
+        "Pratiquez l'écoute active et l'empathie",
+        "Remettez en question vos propres stéréotypes et hypothèses"
+      ]
+    },
+    "81-90": {
+      "analysis": "Vous pourriez avoir des biais inconscients qui pourraient bénéficier de l'éducation et de la réflexion personnelle.",
+      "tips": [
+        "Participez à des programmes de formation sur la diversité",
+        "Pratiquez les compétences de compétence culturelle",
+        "Recherchez le mentorat de leaders divers"
+      ]
+    },
+    "91-100": {
+      "analysis": "Vous montrez une excellente conscience de la diversité et de l'inclusion ! Votre attitude ouverte d'esprit démontre une compréhension profonde des différentes cultures et perspectives.",
+      "tips": [
+        "Continuez à être une influence positive dans la promotion de la compréhension et du respect",
+        "Partagez votre état d'esprit inclusif avec les autres",
+        "Soutenez les initiatives de diversité dans votre communauté"
+      ]
+    }
+  }
+}

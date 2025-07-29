@@ -1,11 +1,305 @@
 {
-  "title": "Mi Test de Tendencia Discriminatoria",
-  "question": "¿Cuál de los siguientes es el método para agregar un valor a una lista de Python?",
-  "placeholder": "Ingrese su respuesta",
-  "button": "Verificar respuesta",
-  "answer": "append",
-  "explanation": "Para agregar un valor a una lista de Python, use el método append().",
-  "correct": "¡Correcto!",
-  "incorrect": "Incorrecto.",
-  "select_language": "Seleccionar idioma"
-} 
+  "title": "Mi Test de Sesgo Racial",
+  "subtitle": "Mi Test de Sesgo Racial",
+  "start": "Iniciar Test",
+  "prev": "Anterior",
+  "next": "Siguiente",
+  "restart": "Reiniciar Test",
+  "home": "Inicio",
+  "progress": "{current}/{total}",
+  "resultTitle": "Resultados del Test",
+  "resultSubtitle": "Resultados del Test",
+  "biasIndex": "Índice de Sesgo Consciente",
+  "analysis": "Análisis",
+  "solutions": "Sugerencias para el Crecimiento",
+  "disclaimer": "Este resultado es solo para fines educativos y no es un diagnóstico psicológico profesional. Por favor, utilícelo como una herramienta para la reflexión personal y el crecimiento.",
+  "disclaimerLanding": "Este test no es un diagnóstico psicológico y está proporcionado con fines de entretenimiento y educación. Los resultados no juzgan su carácter y están destinados a ser una herramienta para la reflexión personal y el crecimiento.",
+  "intro": "Esta prueba es una herramienta educativa para ayudarte a explorar tus prejuicios inconscientes, aumentar la conciencia sobre la diversidad y obtener soluciones prácticas para tu crecimiento personal.",
+  "important": "Puntos Importantes:",
+  "importantList": [
+    "Esta prueba no etiqueta a nadie como 'racista'",
+    "Los resultados son para la reflexión, no para un diagnóstico psicológico",
+    "Todas las respuestas son anónimas y no se recopilan datos personales",
+    "Los resultados se eliminan cuando cierra el navegador"
+  ],
+  "questions": [
+    {"question": "Por favor seleccione su género", "options": [
+      {"label": "Masculino", "value": 0},
+      {"label": "Femenino", "value": 0},
+      {"label": "No binario", "value": 0},
+      {"label": "Otro", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su estado civil", "options": [
+      {"label": "Soltero", "value": 0},
+      {"label": "Casado", "value": 0},
+      {"label": "Divorciado", "value": 0},
+      {"label": "Viudo", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su etnia", "options": [
+      {"label": "Asiático", "value": 0},
+      {"label": "Caucásico", "value": 0},
+      {"label": "Africano", "value": 0},
+      {"label": "Hispano", "value": 0},
+      {"label": "Mixto", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su edad", "options": [
+      {"label": "18-24 años", "value": 0},
+      {"label": "25-34 años", "value": 0},
+      {"label": "35-44 años", "value": 0},
+      {"label": "45-54 años", "value": 0},
+      {"label": "55-64 años", "value": 0},
+      {"label": "65+ años", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su religión", "options": [
+      {"label": "Cristianismo", "value": 0},
+      {"label": "Budismo", "value": 0},
+      {"label": "Islam", "value": 0},
+      {"label": "Hinduismo", "value": 0},
+      {"label": "Judaísmo", "value": 0},
+      {"label": "Ninguna", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su nivel educativo más alto", "options": [
+      {"label": "Primaria o menos", "value": 0},
+      {"label": "Secundaria", "value": 0},
+      {"label": "Preparatoria", "value": 0},
+      {"label": "Universidad", "value": 0},
+      {"label": "Posgrado o más", "value": 0}
+    ]},
+    {"question": "¿Cuál es su nivel de ingresos actual?", "options": [
+      {"label": "Bajo", "value": 0},
+      {"label": "Medio", "value": 0},
+      {"label": "Alto", "value": 0},
+      {"label": "Muy alto", "value": 0}
+    ]},
+    {"question": "Por favor seleccione su ocupación actual", "options": [
+      {"label": "Estudiante", "value": 0},
+      {"label": "Empleado", "value": 0},
+      {"label": "Autónomo", "value": 0},
+      {"label": "Trabajador religioso", "value": 0},
+      {"label": "Desempleado", "value": 0}
+    ]},
+    {"question": "¿Dónde reside principalmente?", "options": [
+      {"label": "Urbano", "value": 0},
+      {"label": "Suburbano", "value": 0},
+      {"label": "Rural", "value": 0}
+    ]},
+    {"question": "¿Cuántos miembros de la familia viven con usted?", "options": [
+      {"label": "Solo", "value": 0},
+      {"label": "2-3 personas", "value": 0},
+      {"label": "4-6 personas", "value": 0},
+      {"label": "7+ personas", "value": 0}
+    ]},
+    {"question": "Si un extranjero le saluda en la calle?", "options": [
+      {"label": "Saludo naturalmente", "value": 0},
+      {"label": "Me siento incómodo y evito", "value": 2},
+      {"label": "Ignoro y paso de largo", "value": 3}
+    ]},
+    {"question": "Si alguien con atuendo religioso se sienta junto a usted en el metro?", "options": [
+      {"label": "No me molesta en absoluto", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Me mudo a otro asiento", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en un restaurante?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito ese restaurante", "value": 3}
+    ]},
+    {"question": "Si una persona con diferente acento pide direcciones?", "options": [
+      {"label": "Ayudo voluntariamente", "value": 0},
+      {"label": "Ayudo pero me siento incómodo", "value": 2},
+      {"label": "Fingo no entender", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en su vecindario?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa área", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza se sienta junto a usted en el autobús?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Me mudo a otro asiento", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en el trabajo?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito trabajar juntos", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide prestar algo?", "options": [
+      {"label": "Presto voluntariamente", "value": 0},
+      {"label": "Presto pero me siento incómodo", "value": 2},
+      {"label": "Pongo excusas para no prestar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en una tienda?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa tienda", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide ayuda?", "options": [
+      {"label": "Ayudo voluntariamente", "value": 0},
+      {"label": "Ayudo pero me siento incómodo", "value": 2},
+      {"label": "Fingo no ver", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en la escuela?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa clase", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide unirse a su grupo?", "options": [
+      {"label": "Bienvenido voluntariamente", "value": 0},
+      {"label": "Acepto pero me siento incómodo", "value": 2},
+      {"label": "Pongo excusas para rechazar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en un parque?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito ese parque", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide direcciones al baño?", "options": [
+      {"label": "Guío voluntariamente", "value": 0},
+      {"label": "Guío pero me siento incómodo", "value": 2},
+      {"label": "Fingo no saber", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en una biblioteca?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa biblioteca", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide compartir una mesa?", "options": [
+      {"label": "Comparto voluntariamente", "value": 0},
+      {"label": "Comparto pero me siento incómodo", "value": 2},
+      {"label": "Pongo excusas para rechazar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en un hospital?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito ese hospital", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide la hora?", "options": [
+      {"label": "Digo voluntariamente", "value": 0},
+      {"label": "Digo pero me siento incómodo", "value": 2},
+      {"label": "Fingo no escuchar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en un banco?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito ese banco", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide prestar un bolígrafo?", "options": [
+      {"label": "Presto voluntariamente", "value": 0},
+      {"label": "Presto pero me siento incómodo", "value": 2},
+      {"label": "Pongo excusas para no prestar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en una oficina de correos?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa oficina de correos", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide un pañuelo?", "options": [
+      {"label": "Doy voluntariamente", "value": 0},
+      {"label": "Doy pero me siento incómodo", "value": 2},
+      {"label": "Fingo no tener ninguno", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en una gasolinera?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa gasolinera", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide tomar una foto?", "options": [
+      {"label": "Tomo voluntariamente", "value": 0},
+      {"label": "Tomo pero me siento incómodo", "value": 2},
+      {"label": "Pongo excusas para rechazar", "value": 3}
+    ]},
+    {"question": "Cuando ve a una persona de diferente raza en una tienda de conveniencia?", "options": [
+      {"label": "Ningún sentimiento especial", "value": 0},
+      {"label": "Me siento ligeramente incómodo", "value": 2},
+      {"label": "Evito esa tienda", "value": 3}
+    ]},
+    {"question": "Si una persona de diferente raza pide cambio?", "options": [
+      {"label": "Doy voluntariamente", "value": 0},
+      {"label": "Doy pero me siento incómodo", "value": 2},
+      {"label": "Fingo no tener cambio", "value": 3}
+    ]}
+  ],
+  "solutions": {
+    "0-10": {
+      "analysis": "¡Muestras excelente conciencia de diversidad e inclusión! Tu actitud de mente abierta demuestra una profunda comprensión de diferentes culturas y perspectivas.",
+      "tips": [
+        "Continúa siendo una influencia positiva en la promoción del entendimiento y respeto",
+        "Comparte tu mentalidad inclusiva con otros",
+        "Apoya iniciativas de diversidad en tu comunidad"
+      ]
+    },
+    "11-20": {
+      "analysis": "Tienes una buena base para entender la diversidad. Con un poco más de conciencia y educación, puedes ser aún más inclusivo.",
+      "tips": [
+        "Aprende más sobre diferentes culturas y perspectivas",
+        "Busca experiencias e interacciones diversas",
+        "Desafía tus propias suposiciones sobre otros"
+      ]
+    },
+    "21-30": {
+      "analysis": "Muestras conciencia moderada de los problemas de diversidad. Considera aprender más sobre diferentes culturas y perspectivas.",
+      "tips": [
+        "Edúcate sobre el sesgo inconsciente",
+        "Busca oportunidades para interactuar con grupos diversos",
+        "Practica la empatía y la escucha activa"
+      ]
+    },
+    "31-40": {
+      "analysis": "Puedes tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal.",
+      "tips": [
+        "Lee libros y artículos sobre diversidad e inclusión",
+        "Asiste a talleres sobre sesgo inconsciente",
+        "Reflexiona sobre tus propias experiencias y suposiciones"
+      ]
+    },
+    "41-50": {
+      "analysis": "Podrías beneficiarte de más educación sobre diversidad e inclusión.",
+      "tips": [
+        "Busca recursos sobre diferentes culturas",
+        "Practica la atención plena y la reflexión personal",
+        "Participa en conversaciones sobre diversidad"
+      ]
+    },
+    "51-60": {
+      "analysis": "Puedes tener algunos prejuicios que podrían abordarse a través de la educación y la reflexión personal.",
+      "tips": [
+        "Aprende sobre la historia y experiencias de diferentes grupos",
+        "Practica ejercicios de toma de perspectiva",
+        "Busca retroalimentación de perspectivas diversas"
+      ]
+    },
+    "61-70": {
+      "analysis": "Podrías tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal.",
+      "tips": [
+        "Toma cursos sobre diversidad e inclusión",
+        "Practica la humildad cultural",
+        "Participa en ejercicios de reflexión personal"
+      ]
+    },
+    "71-80": {
+      "analysis": "Puedes tener algunos prejuicios que podrían abordarse a través de la educación y la reflexión personal.",
+      "tips": [
+        "Busca desarrollo profesional sobre diversidad",
+        "Practica la escucha activa y la empatía",
+        "Desafía tus propios estereotipos y suposiciones"
+      ]
+    },
+    "81-90": {
+      "analysis": "Podrías tener algunos prejuicios inconscientes que podrían beneficiarse de la educación y la reflexión personal.",
+      "tips": [
+        "Participa en programas de entrenamiento de diversidad",
+        "Practica habilidades de competencia cultural",
+        "Busca mentoría de líderes diversos"
+      ]
+    },
+    "91-100": {
+      "analysis": "¡Muestras excelente conciencia de diversidad e inclusión! Tu actitud de mente abierta demuestra una profunda comprensión de diferentes culturas y perspectivas.",
+      "tips": [
+        "Continúa siendo una influencia positiva en la promoción del entendimiento y respeto",
+        "Comparte tu mentalidad inclusiva con otros",
+        "Apoya iniciativas de diversidad en tu comunidad"
+      ]
+    }
+  }
+}
