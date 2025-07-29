@@ -17,11 +17,7 @@ const resources = {
 // 지역별 언어 감지 함수
 async function detectLanguage() {
   try {
-    // 저장된 언어 설정 확인
-    const savedLang = localStorage.getItem("lang");
-    if (savedLang && resources[savedLang]) {
-      return savedLang;
-    }
+    // localStorage 사용하지 않음 - 항상 브라우저/지역(IP) 기반 감지
 
     // 브라우저 언어 감지
     const browserLang = navigator.language || navigator.userLanguage;
@@ -46,7 +42,6 @@ async function detectLanguage() {
       const response = await fetch('https://ipapi.co/json/');
       const data = await response.json();
       const countryCode = data.country_code;
-      
       // 국가별 언어 매핑
       const countryToLang = {
         'KR': 'ko',
@@ -64,14 +59,12 @@ async function detectLanguage() {
         'BE': 'fr',
         'CH': 'fr'
       };
-      
       if (countryToLang[countryCode]) {
         return countryToLang[countryCode];
       }
     } catch (error) {
       console.log("IP 기반 언어 감지 실패:", error);
     }
-    
     return "ko"; // 기본값: 한국어
   } catch (error) {
     console.log("언어 감지 오류:", error);
