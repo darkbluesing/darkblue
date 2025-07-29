@@ -137,7 +137,7 @@ function ProgressBox({ current, total, t }) {
   );
 }
 
-function ProgressCard({ current, total }) {
+function ProgressCard({ current, total, t }) {
   const percent = Math.round(((current + 1) / total) * 100);
   return (
     <div className="progress-card">
@@ -448,7 +448,7 @@ function App() {
   return (
     <div className="container">
       <div className="section section-top">
-        <ProgressCard current={current} total={total} />
+        <ProgressCard current={current} total={total} t={t} />
       </div>
       <div className="section section-mid">
         <AdPlaceholder />
