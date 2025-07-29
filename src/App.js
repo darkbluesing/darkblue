@@ -104,8 +104,8 @@ function LandingPage({ onStart, t }) {
       <DarkModeToggle />
       <h1 id="main-title">{t("title")}</h1>
       <div id="main-subtitle" style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 12 }}>{t("subtitle")}</div>
-      <div id="main-intro" className="main-intro">{t("intro")}</div>
-      <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888' }}>
+      <div id="main-intro" className="main-intro" style={{ textAlign: 'left' }}>{t("intro")}</div>
+      <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left' }}>
         <strong>{t("disclaimerLanding")}</strong>
       </div>
       <div id="main-important-label" style={{ fontWeight: 600, marginTop: 18 }}>{t("important")}</div>
@@ -142,7 +142,7 @@ function ProgressCard({ current, total }) {
   return (
     <div className="progress-card">
       <div className="progress-row">
-        <span className="progress-label">진행률</span>
+        <span className="progress-label">{t("progressLabel")}</span>
         <span className="progress-index">{current + 1} / {total}</span>
       </div>
       <div className="progress-bar-bg">
@@ -207,9 +207,9 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
         {scorePercent}%
       </div>
       <div style={{ fontWeight: 600, marginBottom: 8 }}>{t("biasIndex")}</div>
-      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>성향 분석</div>
+      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("analysis")}</div>
       <div style={{ marginBottom: 12 }}>{solution.analysis}</div>
-      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>솔루션</div>
+      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("solutions")}</div>
       <ul style={{ textAlign: 'left', paddingLeft: 18, margin: 0 }}>
         {solution.tips.map((tip, idx) => (
           <li key={idx} style={{ marginBottom: 6 }}>{tip}</li>
@@ -228,7 +228,7 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
       {/* SNS 공유 버튼 영역 */}
       <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid #eee' }}>
         <div style={{ textAlign: 'center', marginBottom: 16, fontSize: '0.9rem', color: '#666', fontWeight: 500 }}>
-          결과 공유하기
+          {t("shareResult")}
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button 
