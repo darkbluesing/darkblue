@@ -104,8 +104,8 @@ function LandingPage({ onStart, t }) {
       <DarkModeToggle />
       <h1 id="main-title">{t("title")}</h1>
       <div id="main-subtitle" style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 12 }}>{t("subtitle")}</div>
-      <div id="main-intro" className="main-intro" style={{ textAlign: 'left' }}>{t("intro")}</div>
-      <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left' }}>
+      <div id="main-intro" className="main-intro" style={{ textAlign: 'left', width: '100%', display: 'block' }}>{t("intro")}</div>
+      <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left', width: '100%', display: 'block' }}>
         <strong>{t("disclaimerLanding")}</strong>
       </div>
       <div id="main-important-label" style={{ fontWeight: 600, marginTop: 18 }}>{t("important")}</div>
