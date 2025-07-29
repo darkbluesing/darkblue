@@ -209,7 +209,7 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
       <div style={{ fontWeight: 600, marginBottom: 8 }}>{t("biasIndex")}</div>
       <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("analysis")}</div>
       <div style={{ marginBottom: 12 }}>{solution.analysis}</div>
-      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("solutions")}</div>
+      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("solutionsTitle")}</div>
       <ul style={{ textAlign: 'left', paddingLeft: 18, margin: 0 }}>
         {solution.tips.map((tip, idx) => (
           <li key={idx} style={{ marginBottom: 6 }}>{tip}</li>
