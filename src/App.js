@@ -412,10 +412,10 @@ function App() {
           <AdPlaceholder />
         </div>
         <div className="section section-bot">
-          <div id="main-intro" className="main-intro" style={{ marginBottom: 18, textAlign: 'center', lineHeight: 1.6 }}>
+          <div id="main-intro" className="main-intro" style={{ marginBottom: 18, textAlign: 'left', lineHeight: 1.6, width: '100%', display: 'block' }}>
             • {t("intro")}
           </div>
-          <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'center', lineHeight: 1.5 }}>
+          <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left', lineHeight: 1.5, width: '100%', display: 'block' }}>
             • <strong>{t("disclaimerLanding")}</strong>
           </div>
           <div id="main-important-label" style={{ fontWeight: 600, marginTop: 18, textAlign: 'left' }}>{t("important")}</div>
