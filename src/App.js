@@ -113,6 +113,23 @@ function LandingPage({ onStart, t }) {
         {(t("importantList", { returnObjects: true }) || []).map((item, idx) => <li key={idx}>{item}</li>)}
       </ul>
       <button className="submit-btn" style={{ width: 220, fontSize: 18, margin: '18px 0' }} onClick={onStart}>{t("start")}</button>
+      
+      {/* 테스트 이미지 다운로드 버튼 (개발용) */}
+      <button 
+        onClick={downloadTestImages}
+        style={{
+          marginTop: 16,
+          padding: '8px 16px',
+          background: '#f0f0f0',
+          color: '#333',
+          border: '1px solid #ddd',
+          borderRadius: '6px',
+          fontSize: '14px',
+          cursor: 'pointer'
+        }}
+      >
+        🎨 게이지 스타일 테스트 이미지 다운로드
+      </button>
     </div>
   );
 }
@@ -807,6 +824,324 @@ function App() {
       </div>
     </div>
   );
+}
+
+// 테스트 이미지 생성 함수들
+function generateTestImage1() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 600;
+  canvas.height = 150;
+  
+  // 배경
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('옵션 1: 부드러운 그라데이션 + 심플 픽토그램', canvas.width/2, 25);
+  
+  // 5개 구간 정의
+  const segments = [
+    { min: 0, max: 20, color: '#4CAF50', label: 'EXCELLENT', icon: '●', range: '81-100%' },
+    { min: 21, max: 40, color: '#8BC34A', label: 'GOOD', icon: '●', range: '61-80%' },
+    { min: 41, max: 60, color: '#FFC107', label: 'FAIR', icon: '●', range: '41-60%' },
+    { min: 61, max: 80, color: '#FF9800', label: 'UNCERTAIN', icon: '●', range: '21-40%' },
+    { min: 81, max: 100, color: '#F44336', label: 'POOR', icon: '●', range: '0-20%' }
+  ];
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 50;
+  const barHeight = 60;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 픽토그램
+    ctx.font = '20px Arial, sans-serif';
+    ctx.fillText(segment.icon, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 (예시: 65% 위치)
+  const pointerX = 50 + (65 / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+  
+  return canvas.toDataURL('image/png');
+}
+
+function generateTestImage2() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 600;
+  canvas.height = 150;
+  
+  // 배경
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('옵션 2: 강한 대비 + 감정 표현', canvas.width/2, 25);
+  
+  // 5개 구간 정의
+  const segments = [
+    { min: 0, max: 20, color: '#2E7D32', label: 'EXCELLENT', icon: '😊', range: '81-100%' },
+    { min: 21, max: 40, color: '#4CAF50', label: 'GOOD', icon: '🙂', range: '61-80%' },
+    { min: 41, max: 60, color: '#FFC107', label: 'FAIR', icon: '😐', range: '41-60%' },
+    { min: 61, max: 80, color: '#FF5722', label: 'UNCERTAIN', icon: '😕', range: '21-40%' },
+    { min: 81, max: 100, color: '#D32F2F', label: 'POOR', icon: '😞', range: '0-20%' }
+  ];
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 50;
+  const barHeight = 60;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 픽토그램
+    ctx.font = '20px Arial, sans-serif';
+    ctx.fillText(segment.icon, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 (예시: 65% 위치)
+  const pointerX = 50 + (65 / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+  
+  return canvas.toDataURL('image/png');
+}
+
+function generateTestImage3() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 600;
+  canvas.height = 150;
+  
+  // 배경
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('옵션 3: 중성 + 기하학적', canvas.width/2, 25);
+  
+  // 5개 구간 정의
+  const segments = [
+    { min: 0, max: 20, color: '#4CAF50', label: 'EXCELLENT', icon: '◯', range: '81-100%' },
+    { min: 21, max: 40, color: '#8BC34A', label: 'GOOD', icon: '◯', range: '61-80%' },
+    { min: 41, max: 60, color: '#FFC107', label: 'FAIR', icon: '◯', range: '41-60%' },
+    { min: 61, max: 80, color: '#FF9800', label: 'UNCERTAIN', icon: '◯', range: '21-40%' },
+    { min: 81, max: 100, color: '#F44336', label: 'POOR', icon: '◯', range: '0-20%' }
+  ];
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 50;
+  const barHeight = 60;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 픽토그램
+    ctx.font = '20px Arial, sans-serif';
+    ctx.fillText(segment.icon, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 (예시: 65% 위치)
+  const pointerX = 50 + (65 / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+  
+  return canvas.toDataURL('image/png');
+}
+
+function generateTestImage4() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 600;
+  canvas.height = 150;
+  
+  // 배경
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('옵션 4: 파스텔 그라데이션 + 미니멀', canvas.width/2, 25);
+  
+  // 5개 구간 정의
+  const segments = [
+    { min: 0, max: 20, color: '#A5D6A7', label: 'EXCELLENT', icon: '•', range: '81-100%' },
+    { min: 21, max: 40, color: '#C8E6C9', label: 'GOOD', icon: '•', range: '61-80%' },
+    { min: 41, max: 60, color: '#FFF9C4', label: 'FAIR', icon: '•', range: '41-60%' },
+    { min: 61, max: 80, color: '#FFCC80', label: 'UNCERTAIN', icon: '•', range: '21-40%' },
+    { min: 81, max: 100, color: '#EF9A9A', label: 'POOR', icon: '•', range: '0-20%' }
+  ];
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 50;
+  const barHeight = 60;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 14px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 픽토그램
+    ctx.font = '24px Arial, sans-serif';
+    ctx.fillText(segment.icon, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 (예시: 65% 위치)
+  const pointerX = 50 + (65 / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+  
+  return canvas.toDataURL('image/png');
+}
+
+function generateTestImage5() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  canvas.width = 600;
+  canvas.height = 150;
+  
+  // 배경
+  ctx.fillStyle = '#f5f5f5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 20px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('옵션 5: 비비드 + 라인 픽토그램', canvas.width/2, 25);
+  
+  // 5개 구간 정의
+  const segments = [
+    { min: 0, max: 20, color: '#00C851', label: 'EXCELLENT', icon: '┌─┐', range: '81-100%' },
+    { min: 21, max: 40, color: '#33D17A', label: 'GOOD', icon: '┌─┐', range: '61-80%' },
+    { min: 41, max: 60, color: '#FFD700', label: 'FAIR', icon: '┌─┐', range: '41-60%' },
+    { min: 61, max: 80, color: '#FF6B35', label: 'UNCERTAIN', icon: '┌─┐', range: '21-40%' },
+    { min: 81, max: 100, color: '#FF1744', label: 'POOR', icon: '┌─┐', range: '0-20%' }
+  ];
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 50;
+  const barHeight = 60;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 14px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 픽토그램
+    ctx.font = '16px Arial, sans-serif';
+    ctx.fillText(segment.icon, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 (예시: 65% 위치)
+  const pointerX = 50 + (65 / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+  
+  return canvas.toDataURL('image/png');
+}
+
+// 테스트 이미지 다운로드 함수
+function downloadTestImages() {
+  const images = [
+    { name: 'option1', data: generateTestImage1() },
+    { name: 'option2', data: generateTestImage2() },
+    { name: 'option3', data: generateTestImage3() },
+    { name: 'option4', data: generateTestImage4() },
+    { name: 'option5', data: generateTestImage5() }
+  ];
+  
+  images.forEach((image, index) => {
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.download = `gauge-option-${index + 1}.png`;
+      link.href = image.data;
+      link.click();
+    }, index * 500);
+  });
+  
+  alert('5개의 테스트 이미지가 순차적으로 다운로드됩니다!');
 }
 
 export default App;
