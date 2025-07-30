@@ -260,16 +260,30 @@ function generateTikTokImage(scorePercent, solution, t) {
     const maxTips = Math.min(3, solution.tips.length);
     for (let i = 0; i < maxTips; i++) {
       const tip = solution.tips[i];
-      const tipY = y + 30 + (i * 25);
+      const tipY = y + 30 + (i * 60); // 간격 증가
       
       // 글머리 기호 (웹페이지와 동일한 스타일)
       ctx.fillText('•', centerX - 200, tipY);
       
-      // 팁 텍스트 (웹페이지와 동일한 스타일)
-      const tipLines = wrapText(ctx, tip, 380, 18);
-      tipLines.forEach((tipLine, tipIndex) => {
-        ctx.fillText(tipLine, centerX - 180, tipY + (tipIndex * 18));
-      });
+      // 팁 텍스트 (개선된 줄바꿈으로 텍스트 깨짐 방지)
+      const tipWords = tip.split(' ');
+      let tipLine = '';
+      let tipLineY = tipY;
+      
+      for (let j = 0; j < tipWords.length; j++) {
+        const testTipLine = tipLine + tipWords[j] + ' ';
+        const tipMetrics = ctx.measureText(testTipLine);
+        const tipTestWidth = tipMetrics.width;
+        
+        if (tipTestWidth > 360 && j > 0) {
+          ctx.fillText(tipLine, centerX - 180, tipLineY);
+          tipLine = tipWords[j] + ' ';
+          tipLineY += 20;
+        } else {
+          tipLine = testTipLine;
+        }
+      }
+      ctx.fillText(tipLine, centerX - 180, tipLineY);
     }
   }
   
