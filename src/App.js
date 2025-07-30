@@ -192,45 +192,63 @@ function generateTikTokImage(scorePercent, solution, t) {
   ctx.font = 'bold 36px Arial, sans-serif';
   ctx.fillText(t("resultSubtitle"), canvas.width/2, 200);
   
-  // 점수 원 그리기 (모바일에 최적화된 크기)
+  // 게이지 스타일 점수 표시 (모바일에 최적화된 크기)
   const centerX = canvas.width / 2;
-  const centerY = 500;
-  const radius = 70; // 모바일에 최적화된 크기
+  const gaugeY = 500;
+  const gaugeWidth = 800;
+  const gaugeHeight = 120;
+  const gaugeX = (canvas.width - gaugeWidth) / 2;
   
-  // 점수 원 배경 (웹페이지와 동일한 그라데이션)
-  const circleBg = getRedGradient(scorePercent);
-  ctx.fillStyle = circleBg;
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-  ctx.fill();
+  // 5개 구간 정의 (이미지와 동일한 스타일)
+  const segments = [
+    { min: 0, max: 20, color: '#ff4444', label: 'POOR', emoji: '😞', range: '0-20%' },
+    { min: 21, max: 40, color: '#ff8800', label: 'UNCERTAIN', emoji: '😐', range: '21-40%' },
+    { min: 41, max: 60, color: '#ffcc00', label: 'FAIR', emoji: '😐', range: '41-60%' },
+    { min: 61, max: 80, color: '#88cc00', label: 'GOOD', emoji: '🙂', range: '61-80%' },
+    { min: 81, max: 100, color: '#44cc44', label: 'EXCELLENT', emoji: '😊', range: '81-100%' }
+  ];
   
-  // 그림자 효과 (웹페이지와 동일)
-  ctx.shadowColor = circleBg + '55';
-  ctx.shadowBlur = 35;
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 12;
-  ctx.fill();
-  ctx.shadowColor = 'transparent';
-  ctx.shadowBlur = 0;
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 0;
+  // 게이지 바 그리기
+  const barWidth = gaugeWidth - 40;
+  const segmentWidth = barWidth / 5;
+  const barY = gaugeY + 30;
+  const barHeight = 50;
   
-  // 점수 텍스트 (모바일에 최적화된 크기)
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 42px Arial, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(`${scorePercent}%`, centerX, centerY + 12);
+  segments.forEach((segment, index) => {
+    const x = gaugeX + 20 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    
+    // 이모지
+    ctx.font = '20px Arial, sans-serif';
+    ctx.fillText(segment.emoji, x + segmentWidth/2, barY + 45);
+  });
+  
+  // 포인터 그리기 (점수 위치)
+  const pointerX = gaugeX + 20 + (scorePercent / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 15);
   
   // 편견 지수 (모바일에 최적화된 크기)
   ctx.fillStyle = '#333333';
   ctx.font = 'bold 22px Arial, sans-serif';
-  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 50);
+  ctx.textAlign = 'center';
+  ctx.fillText(t("biasIndex"), canvas.width/2, gaugeY + gaugeHeight + 50);
   
   // 분석 제목 (모바일에 최적화된 크기)
   ctx.fillStyle = '#333333';
   ctx.font = 'bold 22px Arial, sans-serif';
   ctx.textAlign = 'left';
-  ctx.fillText(t("analysis"), centerX - 250, centerY + radius + 100);
+  ctx.fillText(t("analysis"), centerX - 250, gaugeY + gaugeHeight + 100);
   
   // 분석 결과 (모바일에 최적화된 크기)
   ctx.fillStyle = '#333333';
@@ -239,7 +257,7 @@ function generateTikTokImage(scorePercent, solution, t) {
   
   const maxWidth = 500; // 모바일에 최적화된 텍스트 영역
   const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 24);
-  let y = centerY + radius + 130;
+  let y = gaugeY + gaugeHeight + 130;
   
   analysisLines.forEach((line, index) => {
     ctx.fillText(line, centerX - 250, y + (index * 24));
@@ -343,6 +361,167 @@ function updateMetaTags(scorePercent, imageDataUrl) {
   if (twitterImage) twitterImage.setAttribute('content', imageDataUrl);
 }
 
+// 게이지 스타일 점수 표시 생성 함수
+function generateGaugeStyle(scorePercent, t) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 게이지 크기 설정
+  canvas.width = 800;
+  canvas.height = 200;
+  
+  // 5개 구간 정의 (이미지와 동일한 스타일)
+  const segments = [
+    { min: 0, max: 20, color: '#ff4444', label: 'POOR', emoji: '😞', range: '0-20%' },
+    { min: 21, max: 40, color: '#ff8800', label: 'UNCERTAIN', emoji: '😐', range: '21-40%' },
+    { min: 41, max: 60, color: '#ffcc00', label: 'FAIR', emoji: '😐', range: '41-60%' },
+    { min: 61, max: 80, color: '#88cc00', label: 'GOOD', emoji: '🙂', range: '61-80%' },
+    { min: 81, max: 100, color: '#44cc44', label: 'EXCELLENT', emoji: '😊', range: '81-100%' }
+  ];
+  
+  // 배경
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 게이지 바 그리기
+  const barWidth = canvas.width - 100;
+  const segmentWidth = barWidth / 5;
+  const barY = 60;
+  const barHeight = 80;
+  
+  segments.forEach((segment, index) => {
+    const x = 50 + index * segmentWidth;
+    
+    // 둥근 모서리 게이지 바
+    ctx.fillStyle = segment.color;
+    ctx.beginPath();
+    ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
+    ctx.fill();
+    
+    // 라벨
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 18px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(segment.label, x + segmentWidth/2, barY + 30);
+    
+    // 범위
+    ctx.font = '14px Arial, sans-serif';
+    ctx.fillText(segment.range, x + segmentWidth/2, barY + 50);
+    
+    // 이모지
+    ctx.font = '24px Arial, sans-serif';
+    ctx.fillText(segment.emoji, x + segmentWidth/2, barY + 75);
+  });
+  
+  // 포인터 그리기 (점수 위치)
+  const pointerX = 50 + (scorePercent / 100) * barWidth;
+  drawGaugePointer(ctx, pointerX, barY + barHeight + 20);
+  
+  return canvas.toDataURL('image/png');
+}
+
+// 게이지 포인터 그리기 함수
+function drawGaugePointer(ctx, x, y) {
+  ctx.fillStyle = '#000000';
+  
+  // 삼각형 포인터
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x - 8, y + 15);
+  ctx.lineTo(x + 8, y + 15);
+  ctx.closePath();
+  ctx.fill();
+  
+  // 포인터 선
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#000000';
+  ctx.beginPath();
+  ctx.moveTo(x, y + 15);
+  ctx.lineTo(x, y + 25);
+  ctx.stroke();
+  
+  // 포인터 원
+  ctx.beginPath();
+  ctx.arc(x, y + 25, 4, 0, 2 * Math.PI);
+  ctx.fill();
+}
+
+// 둥근 모서리 사각형 그리기 (Canvas API 확장)
+CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+  this.beginPath();
+  this.moveTo(x + radius, y);
+  this.lineTo(x + width - radius, y);
+  this.quadraticCurveTo(x + width, y, x + width, y + radius);
+  this.lineTo(x + width, y + height - radius);
+  this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  this.lineTo(x + radius, y + height);
+  this.quadraticCurveTo(x, y + height, x, y + height - radius);
+  this.lineTo(x, y + radius);
+  this.quadraticCurveTo(x, y, x + radius, y);
+  this.closePath();
+};
+
+// 게이지 표시 컴포넌트
+function GaugeDisplay({ scorePercent, t }) {
+  const canvasRef = useRef(null);
+  
+  useEffect(() => {
+    if (canvasRef.current) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      
+      // 캔버스 크기 설정
+      canvas.width = 560;
+      canvas.height = 120;
+      
+      // 5개 구간 정의 (이미지와 동일한 스타일)
+      const segments = [
+        { min: 0, max: 20, color: '#ff4444', label: 'POOR', emoji: '😞', range: '0-20%' },
+        { min: 21, max: 40, color: '#ff8800', label: 'UNCERTAIN', emoji: '😐', range: '21-40%' },
+        { min: 41, max: 60, color: '#ffcc00', label: 'FAIR', emoji: '😐', range: '41-60%' },
+        { min: 61, max: 80, color: '#88cc00', label: 'GOOD', emoji: '🙂', range: '61-80%' },
+        { min: 81, max: 100, color: '#44cc44', label: 'EXCELLENT', emoji: '😊', range: '81-100%' }
+      ];
+      
+      // 배경
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // 게이지 바 그리기
+      const barWidth = canvas.width - 40;
+      const segmentWidth = barWidth / 5;
+      const barY = 30;
+      const barHeight = 50;
+      
+      segments.forEach((segment, index) => {
+        const x = 20 + index * segmentWidth;
+        
+        // 둥근 모서리 게이지 바
+        ctx.fillStyle = segment.color;
+        ctx.beginPath();
+        ctx.roundRect(x, barY, segmentWidth, barHeight, 6);
+        ctx.fill();
+        
+        // 라벨
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(segment.label, x + segmentWidth/2, barY + 20);
+        
+        // 이모지
+        ctx.font = '16px Arial, sans-serif';
+        ctx.fillText(segment.emoji, x + segmentWidth/2, barY + 40);
+      });
+      
+      // 포인터 그리기 (점수 위치)
+      const pointerX = 20 + (scorePercent / 100) * barWidth;
+      drawGaugePointer(ctx, pointerX, barY + barHeight + 10);
+    }
+  }, [scorePercent]);
+  
+  return <canvas ref={canvasRef} style={{ width: '100%', height: 'auto' }} />;
+}
+
 function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
   const circleBg = getRedGradient(scorePercent);
   
@@ -368,10 +547,35 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
     <div className="result-page">
       <h2 style={{ fontWeight: 700, fontSize: 24, marginBottom: 8 }}>{t("resultTitle")}</h2>
       <div style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 8 }}>{t("resultSubtitle")}</div>
-      <div className="score-circle" style={{ width: 110, height: 110, borderRadius: '50%', background: circleBg, margin: '0 auto 18px auto', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 700, color: '#fff', boxShadow: `0 10px 30px ${circleBg}55` }}>
-        {scorePercent}%
+      
+      {/* 게이지 스타일 점수 표시 */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        marginBottom: 24 
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: 560,
+          background: '#ffffff',
+          borderRadius: '12px',
+          padding: '20px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+          marginBottom: 16
+        }}>
+          <GaugeDisplay scorePercent={scorePercent} t={t} />
+        </div>
+        <div style={{ 
+          fontSize: '14px', 
+          color: '#666', 
+          textAlign: 'center',
+          fontWeight: 600
+        }}>
+          {t("biasIndex")}
+        </div>
       </div>
-      <div style={{ fontWeight: 600, marginBottom: 8 }}>{t("biasIndex")}</div>
+      
       <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("analysis")}</div>
       <div style={{ marginBottom: 12 }}>{solution.analysis}</div>
       <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("solutionsTitle")}</div>
