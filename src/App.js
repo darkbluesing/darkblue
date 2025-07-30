@@ -168,34 +168,34 @@ function getImageDimensions() {
   return { width: 1080, height: 1920 };
 }
 
-// 통합 이미지 생성 함수 (웹페이지와 동일한 디자인)
+// 통합 이미지 생성 함수 (웹페이지와 동일한 비율과 크기)
 function generateTikTokImage(scorePercent, solution, t) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   
-  // 모바일 최적화 크기 (세로형)
-  canvas.width = 1080;
-  canvas.height = 1920;
+  // 웹페이지와 동일한 비율로 크기 조정 (더 큰 크기)
+  canvas.width = 1200;
+  canvas.height = 1600;
   
   // 배경 - 웹페이지와 동일한 흰색 배경
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // 상단 제목 (웹페이지와 동일한 스타일)
+  // 상단 제목 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.font = 'bold 64px Arial, sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText(t("resultTitle"), canvas.width/2, 120);
   
-  // 부제목 (웹페이지와 동일한 스타일)
+  // 부제목 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 32px Arial, sans-serif';
-  ctx.fillText(t("resultSubtitle"), canvas.width/2, 170);
+  ctx.font = 'bold 42px Arial, sans-serif';
+  ctx.fillText(t("resultSubtitle"), canvas.width/2, 180);
   
-  // 점수 원 그리기 (웹페이지와 동일한 스타일)
+  // 점수 원 그리기 (웹페이지와 동일한 크기)
   const centerX = canvas.width / 2;
-  const centerY = 400;
-  const radius = 55; // 웹페이지와 동일한 크기
+  const centerY = 450;
+  const radius = 80; // 웹페이지와 동일한 크기로 확대
   
   // 점수 원 배경 (웹페이지와 동일한 그라데이션)
   const circleBg = getRedGradient(scorePercent);
@@ -206,64 +206,64 @@ function generateTikTokImage(scorePercent, solution, t) {
   
   // 그림자 효과 (웹페이지와 동일)
   ctx.shadowColor = circleBg + '55';
-  ctx.shadowBlur = 30;
+  ctx.shadowBlur = 40;
   ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 10;
+  ctx.shadowOffsetY = 15;
   ctx.fill();
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 0;
   
-  // 점수 텍스트 (웹페이지와 동일한 스타일)
+  // 점수 텍스트 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 32px Arial, sans-serif';
+  ctx.font = 'bold 48px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`${scorePercent}%`, centerX, centerY + 10);
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 15);
   
-  // 편견 지수 (웹페이지와 동일한 스타일)
+  // 편견 지수 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 16px Arial, sans-serif';
-  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 40);
+  ctx.font = 'bold 24px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 60);
   
-  // 분석 제목 (웹페이지와 동일한 스타일)
+  // 분석 제목 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 16px Arial, sans-serif';
+  ctx.font = 'bold 24px Arial, sans-serif';
   ctx.textAlign = 'left';
-  ctx.fillText(t("analysis"), centerX - 200, centerY + radius + 80);
+  ctx.fillText(t("analysis"), centerX - 300, centerY + radius + 120);
   
-  // 분석 결과 (웹페이지와 동일한 스타일)
+  // 분석 결과 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#333333';
-  ctx.font = '14px Arial, sans-serif';
+  ctx.font = '20px Arial, sans-serif';
   ctx.textAlign = 'left';
   
-  const maxWidth = 400;
-  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 20);
-  let y = centerY + radius + 100;
+  const maxWidth = 600; // 더 넓은 텍스트 영역
+  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 28);
+  let y = centerY + radius + 150;
   
   analysisLines.forEach((line, index) => {
-    ctx.fillText(line, centerX - 200, y + (index * 20));
+    ctx.fillText(line, centerX - 300, y + (index * 28));
   });
   
-  y += analysisLines.length * 20 + 30;
+  y += analysisLines.length * 28 + 50;
   
-  // 솔루션 제목 (웹페이지와 동일한 스타일)
+  // 솔루션 제목 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 16px Arial, sans-serif';
-  ctx.fillText(t("solutionsTitle"), centerX - 200, y);
+  ctx.font = 'bold 24px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX - 300, y);
   
-  // 솔루션 팁들 (웹페이지와 동일한 스타일)
+  // 솔루션 팁들 (웹페이지와 동일한 크기)
   if (solution.tips && solution.tips.length > 0) {
     ctx.fillStyle = '#333333';
-    ctx.font = '14px Arial, sans-serif';
+    ctx.font = '20px Arial, sans-serif';
     
     const maxTips = Math.min(3, solution.tips.length);
     for (let i = 0; i < maxTips; i++) {
       const tip = solution.tips[i];
-      const tipY = y + 30 + (i * 60); // 간격 증가
+      const tipY = y + 50 + (i * 80); // 더 큰 간격
       
-      // 글머리 기호 (웹페이지와 동일한 스타일)
-      ctx.fillText('•', centerX - 200, tipY);
+      // 글머리 기호 (웹페이지와 동일한 크기)
+      ctx.fillText('•', centerX - 300, tipY);
       
       // 팁 텍스트 (개선된 줄바꿈으로 텍스트 깨짐 방지)
       const tipWords = tip.split(' ');
@@ -275,23 +275,23 @@ function generateTikTokImage(scorePercent, solution, t) {
         const tipMetrics = ctx.measureText(testTipLine);
         const tipTestWidth = tipMetrics.width;
         
-        if (tipTestWidth > 360 && j > 0) {
-          ctx.fillText(tipLine, centerX - 180, tipLineY);
+        if (tipTestWidth > 540 && j > 0) { // 더 넓은 텍스트 영역
+          ctx.fillText(tipLine, centerX - 280, tipLineY);
           tipLine = tipWords[j] + ' ';
-          tipLineY += 20;
+          tipLineY += 28;
         } else {
           tipLine = testTipLine;
         }
       }
-      ctx.fillText(tipLine, centerX - 180, tipLineY);
+      ctx.fillText(tipLine, centerX - 280, tipLineY);
     }
   }
   
-  // 하단 디스클레이머 (웹페이지와 동일한 스타일)
+  // 하단 디스클레이머 (웹페이지와 동일한 크기)
   ctx.fillStyle = '#888888';
-  ctx.font = '15px Arial, sans-serif';
+  ctx.font = '18px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(t("disclaimer"), centerX, canvas.height - 100);
+  ctx.fillText(t("disclaimer"), centerX, canvas.height - 80);
   
   return canvas.toDataURL('image/png');
 }
