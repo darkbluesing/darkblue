@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import "./i18n";
@@ -162,37 +162,209 @@ function getRedGradient(percent) {
   return `rgb(${r},${g},${b})`;
 }
 
+// 기본 OG 이미지 생성 함수
+function generateDefaultOGImage() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 캔버스 크기 설정 (소셜 미디어 최적화)
+  canvas.width = 1200;
+  canvas.height = 630;
+  
+  // 배경 그리기
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, '#6c63ff');
+  gradient.addColorStop(1, '#4a90e2');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목 그리기
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 64px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('나의 인종차별적 성향 테스트', canvas.width/2, 200);
+  
+  // 부제목
+  ctx.font = '32px Arial, sans-serif';
+  ctx.fillText('무의식적 편견을 탐색하고 다양성에 대한 인식을 높이는', canvas.width/2, 280);
+  ctx.fillText('교육적 도구', canvas.width/2, 320);
+  
+  // 아이콘 또는 장식 요소
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+  ctx.beginPath();
+  ctx.arc(canvas.width/2, 450, 60, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // 하단 텍스트
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+  ctx.font = '24px Arial, sans-serif';
+  ctx.fillText('지금 테스트해보세요', canvas.width/2, 550);
+  
+  return canvas.toDataURL('image/png');
+}
+
+// 결과 이미지 생성 함수
+function generateResultImage(scorePercent, solution, t) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 캔버스 크기 설정 (소셜 미디어 최적화)
+  canvas.width = 1200;
+  canvas.height = 630;
+  
+  // 배경 그리기
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 그라데이션 배경
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, '#f8f9fa');
+  gradient.addColorStop(1, '#e9ecef');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 제목 그리기
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(t("resultTitle"), canvas.width/2, 120);
+  
+  // 점수 원 그리기
+  const centerX = canvas.width / 2;
+  const centerY = 280;
+  const radius = 80;
+  
+  // 점수 원 배경
+  const circleBg = getRedGradient(scorePercent);
+  ctx.fillStyle = circleBg;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // 점수 텍스트
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 15);
+  
+  // 편견 지수
+  ctx.fillStyle = '#6c63ff';
+  ctx.font = 'bold 32px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + 140);
+  
+  // 분석 결과 (긴 텍스트는 줄바꿈 처리)
+  ctx.fillStyle = '#666666';
+  ctx.font = '24px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  
+  const maxWidth = canvas.width - 100;
+  const words = solution.analysis.split(' ');
+  let line = '';
+  let y = centerY + 200;
+  
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, centerX, y);
+      line = words[n] + ' ';
+      y += 35;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, centerX, y);
+  
+  // 솔루션 제목
+  ctx.fillStyle = '#333333';
+  ctx.font = 'bold 28px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX, y + 60);
+  
+  // 첫 번째 솔루션 팁
+  if (solution.tips && solution.tips.length > 0) {
+    ctx.fillStyle = '#666666';
+    ctx.font = '20px Arial, sans-serif';
+    ctx.fillText(solution.tips[0], centerX, y + 100);
+  }
+  
+  // 하단 디스클레이머
+  ctx.fillStyle = '#888888';
+  ctx.font = '16px Arial, sans-serif';
+  ctx.fillText('이 결과는 교육적 목적으로만 제공됩니다', centerX, canvas.height - 40);
+  
+  return canvas.toDataURL('image/png');
+}
+
+// 동적 메타 태그 업데이트 함수
+function updateMetaTags(scorePercent, imageDataUrl) {
+  // Open Graph 메타 태그 업데이트
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  
+  if (ogTitle) ogTitle.setAttribute('content', `나의 인종차별적 성향 테스트 결과: ${scorePercent}%`);
+  if (ogDescription) ogDescription.setAttribute('content', `인종차별적 성향 테스트 결과를 확인해보세요. 점수: ${scorePercent}%`);
+  if (ogImage) ogImage.setAttribute('content', imageDataUrl);
+  
+  // Twitter 메타 태그 업데이트
+  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+  const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+  const twitterImage = document.querySelector('meta[property="twitter:image"]');
+  
+  if (twitterTitle) twitterTitle.setAttribute('content', `나의 인종차별적 성향 테스트 결과: ${scorePercent}%`);
+  if (twitterDescription) twitterDescription.setAttribute('content', `인종차별적 성향 테스트 결과를 확인해보세요. 점수: ${scorePercent}%`);
+  if (twitterImage) twitterImage.setAttribute('content', imageDataUrl);
+}
+
 function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
   const circleBg = getRedGradient(scorePercent);
+  
+  // 결과 페이지 로드 시 메타 태그 업데이트
+  useEffect(() => {
+    const imageDataUrl = generateResultImage(scorePercent, solution, t);
+    updateMetaTags(scorePercent, imageDataUrl);
+  }, [scorePercent, solution, t]);
   
   const handleShare = (platform) => {
     const url = window.location.href;
     const text = `나의 인종차별적 성향 테스트 결과: ${scorePercent}%`;
+    const imageDataUrl = generateResultImage(scorePercent, solution, t);
     
     switch(platform) {
       case 'instagram':
-        // Instagram은 웹에서 직접 공유가 어려우므로 URL 복사
-        navigator.clipboard.writeText(`${text}\n${url}`);
-        alert('인스타그램에 공유할 내용이 클립보드에 복사되었습니다.');
+        // Instagram은 웹에서 직접 공유가 어려우므로 이미지 다운로드
+        const link = document.createElement('a');
+        link.download = `racial-bias-test-result-${scorePercent}.png`;
+        link.href = imageDataUrl;
+        link.click();
+        alert('결과 이미지가 다운로드되었습니다. 인스타그램에 업로드해주세요.');
         break;
       case 'kakao':
         // 카카오톡 공유 (카카오 SDK 필요)
         window.open(`https://story.kakao.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
         break;
       case 'facebook':
+        // Facebook은 이미지 URL을 직접 지원하지 않으므로 메타 태그 활용
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
         break;
       case 'tiktok':
-        // TikTok은 웹에서 직접 공유가 어려우므로 URL 복사
-        navigator.clipboard.writeText(`${text}\n${url}`);
-        alert('틱톡에 공유할 내용이 클립보드에 복사되었습니다.');
+        // TikTok은 웹에서 직접 공유가 어려우므로 이미지 다운로드
+        const tiktokLink = document.createElement('a');
+        tiktokLink.download = `racial-bias-test-result-${scorePercent}.png`;
+        tiktokLink.href = imageDataUrl;
+        tiktokLink.click();
+        alert('결과 이미지가 다운로드되었습니다. 틱톡에 업로드해주세요.');
         break;
       case 'twitter':
+        // Twitter는 이미지 URL을 직접 지원하지 않으므로 텍스트만 공유
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
         break;
       case 'url':
-        navigator.clipboard.writeText(url);
-        alert('URL이 클립보드에 복사되었습니다.');
+        // 이미지 URL 복사
+        navigator.clipboard.writeText(imageDataUrl);
+        alert('결과 이미지 URL이 클립보드에 복사되었습니다.');
         break;
       default:
         break;
