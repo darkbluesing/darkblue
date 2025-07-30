@@ -227,6 +227,242 @@ function getImageDimensions() {
   }
 }
 
+// 틱톡용 이미지 생성 함수 (세로형, 더 많은 정보 포함)
+function generateTikTokImage(scorePercent, solution, t) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 틱톡 최적화 크기 (세로형)
+  canvas.width = 1080;
+  canvas.height = 1920;
+  
+  // 배경 그리기
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, '#ff6b6b');
+  gradient.addColorStop(1, '#4ecdc4');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 상단 제목
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 56px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(t("resultTitle"), canvas.width/2, 150);
+  
+  // 점수 원 그리기
+  const centerX = canvas.width / 2;
+  const centerY = 500;
+  const radius = 150;
+  
+  // 점수 원 배경
+  const circleBg = getRedGradient(scorePercent);
+  ctx.fillStyle = circleBg;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // 점수 텍스트
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 96px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 35);
+  
+  // 편견 지수
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 40px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 80);
+  
+  // 분석 결과
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '28px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  
+  const maxWidth = canvas.width * 0.85;
+  const words = solution.analysis.split(' ');
+  let line = '';
+  let y = centerY + radius + 150;
+  
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, centerX, y);
+      line = words[n] + ' ';
+      y += 40;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, centerX, y);
+  
+  // 솔루션 제목
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 36px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX, y + 80);
+  
+  // 솔루션 팁들 (최대 4개까지)
+  if (solution.tips && solution.tips.length > 0) {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '24px Arial, sans-serif';
+    
+    const maxTips = Math.min(4, solution.tips.length);
+    for (let i = 0; i < maxTips; i++) {
+      const tip = solution.tips[i];
+      const tipY = y + 140 + (i * 60);
+      
+      // 글머리 기호
+      ctx.fillText('•', centerX - 250, tipY);
+      
+      // 팁 텍스트 (줄바꿈 처리)
+      const tipWords = tip.split(' ');
+      let tipLine = '';
+      let tipLineY = tipY;
+      
+      for (let j = 0; j < tipWords.length; j++) {
+        const testTipLine = tipLine + tipWords[j] + ' ';
+        const tipMetrics = ctx.measureText(testTipLine);
+        const tipTestWidth = tipMetrics.width;
+        
+        if (tipTestWidth > 450 && j > 0) {
+          ctx.fillText(tipLine, centerX - 200, tipLineY);
+          tipLine = tipWords[j] + ' ';
+          tipLineY += 30;
+        } else {
+          tipLine = testTipLine;
+        }
+      }
+      ctx.fillText(tipLine, centerX - 200, tipLineY);
+    }
+  }
+  
+  // 하단 디스클레이머
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+  ctx.font = '20px Arial, sans-serif';
+  ctx.fillText('이 결과는 교육적 목적으로만 제공됩니다', centerX, canvas.height - 60);
+  
+  return canvas.toDataURL('image/png');
+}
+
+// 인스타그램용 이미지 생성 함수 (더 상세한 정보 포함)
+function generateInstagramImage(scorePercent, solution, t) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 인스타그램 최적화 크기 (정사각형)
+  canvas.width = 1080;
+  canvas.height = 1080;
+  
+  // 배경 그리기
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, '#667eea');
+  gradient.addColorStop(1, '#764ba2');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 상단 제목
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(t("resultTitle"), canvas.width/2, 120);
+  
+  // 점수 원 그리기
+  const centerX = canvas.width / 2;
+  const centerY = 350;
+  const radius = 120;
+  
+  // 점수 원 배경
+  const circleBg = getRedGradient(scorePercent);
+  ctx.fillStyle = circleBg;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+  ctx.fill();
+  
+  // 점수 텍스트
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 72px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 25);
+  
+  // 편견 지수
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 32px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 50);
+  
+  // 분석 결과 (더 많은 텍스트 포함)
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '24px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  
+  const maxWidth = canvas.width * 0.8;
+  const words = solution.analysis.split(' ');
+  let line = '';
+  let y = centerY + radius + 100;
+  
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+    
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, centerX, y);
+      line = words[n] + ' ';
+      y += 35;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, centerX, y);
+  
+  // 솔루션 제목
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 28px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX, y + 60);
+  
+  // 솔루션 팁들 (최대 3개까지)
+  if (solution.tips && solution.tips.length > 0) {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '20px Arial, sans-serif';
+    
+    const maxTips = Math.min(3, solution.tips.length);
+    for (let i = 0; i < maxTips; i++) {
+      const tip = solution.tips[i];
+      const tipY = y + 100 + (i * 40);
+      
+      // 글머리 기호
+      ctx.fillText('•', centerX - 200, tipY);
+      
+      // 팁 텍스트 (줄바꿈 처리)
+      const tipWords = tip.split(' ');
+      let tipLine = '';
+      let tipLineY = tipY;
+      
+      for (let j = 0; j < tipWords.length; j++) {
+        const testTipLine = tipLine + tipWords[j] + ' ';
+        const tipMetrics = ctx.measureText(testTipLine);
+        const tipTestWidth = tipMetrics.width;
+        
+        if (tipTestWidth > 350 && j > 0) {
+          ctx.fillText(tipLine, centerX - 150, tipLineY);
+          tipLine = tipWords[j] + ' ';
+          tipLineY += 25;
+        } else {
+          tipLine = testTipLine;
+        }
+      }
+      ctx.fillText(tipLine, centerX - 150, tipLineY);
+    }
+  }
+  
+  // 하단 디스클레이머
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+  ctx.font = '16px Arial, sans-serif';
+  ctx.fillText('이 결과는 교육적 목적으로만 제공됩니다', centerX, canvas.height - 40);
+  
+  return canvas.toDataURL('image/png');
+}
+
 // 결과 이미지 생성 함수
 function generateResultImage(scorePercent, solution, t) {
   const canvas = document.createElement('canvas');
@@ -373,19 +609,26 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
     
     switch(platform) {
       case 'instagram':
-        // Instagram은 웹에서 직접 공유가 어려우므로 이미지 다운로드
-        const link = document.createElement('a');
-        link.download = `racial-bias-test-result-${scorePercent}.png`;
-        link.href = imageDataUrl;
-        link.click();
-        alert('결과 이미지가 다운로드되었습니다. 인스타그램에 업로드해주세요.');
+        // Instagram은 웹에서 직접 공유가 어려우므로 상세한 이미지 다운로드
+        const instagramImageDataUrl = generateInstagramImage(scorePercent, solution, t);
+        const instagramLink = document.createElement('a');
+        instagramLink.download = `racial-bias-test-result-${scorePercent}-instagram.png`;
+        instagramLink.href = instagramImageDataUrl;
+        instagramLink.click();
+        alert('인스타그램용 결과 이미지가 다운로드되었습니다. 인스타그램에 업로드해주세요.');
         break;
       case 'kakao':
-        // 카카오톡 공유 (카카오 SDK 필요)
-        window.open(`https://story.kakao.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+        // 카카오톡 공유를 위해 URL만 복사
+        navigator.clipboard.writeText(url);
+        alert('카카오톡에 공유할 URL이 클립보드에 복사되었습니다.');
         break;
       case 'facebook':
-        // Facebook 앱 연결 (모바일 우선)
+        // Facebook 앱 연결 (모바일 우선) - 이미지 다운로드 후 URL 공유
+        const facebookLink = document.createElement('a');
+        facebookLink.download = `racial-bias-test-result-${scorePercent}.png`;
+        facebookLink.href = imageDataUrl;
+        facebookLink.click();
+        
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         if (isMobile) {
           // 모바일에서는 Facebook 앱으로 연결
@@ -398,17 +641,25 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
           // 데스크톱에서는 웹으로 연결
           window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
         }
+        alert('결과 이미지가 다운로드되었습니다. 페이스북에 업로드해주세요.');
         break;
       case 'tiktok':
-        // TikTok은 웹에서 직접 공유가 어려우므로 이미지 다운로드
+        // TikTok은 웹에서 직접 공유가 어려우므로 세로형 이미지 다운로드
+        const tiktokImageDataUrl = generateTikTokImage(scorePercent, solution, t);
         const tiktokLink = document.createElement('a');
-        tiktokLink.download = `racial-bias-test-result-${scorePercent}.png`;
-        tiktokLink.href = imageDataUrl;
+        tiktokLink.download = `racial-bias-test-result-${scorePercent}-tiktok.png`;
+        tiktokLink.href = tiktokImageDataUrl;
         tiktokLink.click();
-        alert('결과 이미지가 다운로드되었습니다. 틱톡에 업로드해주세요.');
+        alert('틱톡용 결과 이미지가 다운로드되었습니다. 틱톡에 업로드해주세요.');
         break;
       case 'twitter':
-        // Twitter는 이미지 URL을 직접 지원하지 않으므로 텍스트만 공유
+        // Twitter는 이미지 URL을 직접 지원하지 않으므로 이미지 다운로드 후 안내
+        const twitterLink = document.createElement('a');
+        twitterLink.download = `racial-bias-test-result-${scorePercent}.png`;
+        twitterLink.href = imageDataUrl;
+        twitterLink.click();
+        alert('결과 이미지가 다운로드되었습니다. 트위터에 업로드해주세요.');
+        // 추가로 텍스트도 공유
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
         break;
       case 'url':
