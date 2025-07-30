@@ -216,39 +216,63 @@ function generateTikTokImage(scorePercent, solution, t) {
   const gaugeHeight = 120;
   const gaugeX = (canvas.width - gaugeWidth) / 2;
   
-  // 5개 구간 정의 (이미지와 동일한 스타일)
+  // 10단계 그라데이션 색상 정의 (연두색 → 빨간색)
+  const gradientColors = [
+    '#4CAF50', // 연두색 (좋음)
+    '#66BB6A',
+    '#81C784',
+    '#A5D6A7',
+    '#C8E6C9',
+    '#FFD54F', // 노란색 (중간)
+    '#FFB74D',
+    '#FF8A65',
+    '#E57373',
+    '#F44336'  // 빨간색 (나쁨)
+  ];
+  
+  // 5개 구간 정의 (사람 얼굴 픽토그램)
   const segments = [
-    { min: 0, max: 20, color: '#ff4444', label: 'POOR', emoji: '😞', range: '0-20%' },
-    { min: 21, max: 40, color: '#ff8800', label: 'UNCERTAIN', emoji: '😐', range: '21-40%' },
-    { min: 41, max: 60, color: '#ffcc00', label: 'FAIR', emoji: '😐', range: '41-60%' },
-    { min: 61, max: 80, color: '#88cc00', label: 'GOOD', emoji: '🙂', range: '61-80%' },
-    { min: 81, max: 100, color: '#44cc44', label: 'EXCELLENT', emoji: '😊', range: '81-100%' }
+    { min: 0, max: 20, label: 'EXCELLENT', icon: '😊', range: '81-100%' },
+    { min: 21, max: 40, label: 'GOOD', icon: '🙂', range: '61-80%' },
+    { min: 41, max: 60, label: 'FAIR', icon: '😐', range: '41-60%' },
+    { min: 61, max: 80, label: 'UNCERTAIN', icon: '😕', range: '21-40%' },
+    { min: 81, max: 100, label: 'POOR', icon: '😞', range: '0-20%' }
   ];
   
   // 게이지 바 그리기
   const barWidth = gaugeWidth - 40;
-  const segmentWidth = barWidth / 5;
   const barY = gaugeY + 30;
   const barHeight = 50;
   
-  segments.forEach((segment, index) => {
-    const x = gaugeX + 20 + index * segmentWidth;
+  // 10단계 그라데이션 바 그리기
+  const segmentWidth = barWidth / 10;
+  
+  for (let i = 0; i < 10; i++) {
+    const x = gaugeX + 20 + i * segmentWidth;
     
-    // 둥근 모서리 게이지 바
-    ctx.fillStyle = segment.color;
+    // 각 구간을 그라데이션 색상으로 그리기
+    ctx.fillStyle = gradientColors[i];
     ctx.beginPath();
     ctx.roundRect(x, barY, segmentWidth, barHeight, 8);
     ctx.fill();
+  }
+  
+  // 5개 구간 라벨과 픽토그램 그리기
+  const labelSegmentWidth = barWidth / 5;
+  
+  segments.forEach((segment, index) => {
+    const x = gaugeX + 20 + index * labelSegmentWidth;
     
     // 라벨
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#333333';
     ctx.font = 'bold 16px Arial, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(segment.label, x + segmentWidth/2, barY + 25);
+    ctx.fillText(segment.label, x + labelSegmentWidth/2, barY + 25);
     
-    // 이모지
+    // 사람 얼굴 픽토그램 (하얀색)
+    ctx.fillStyle = '#ffffff';
     ctx.font = '20px Arial, sans-serif';
-    ctx.fillText(segment.emoji, x + segmentWidth/2, barY + 45);
+    ctx.fillText(segment.icon, x + labelSegmentWidth/2, barY + 45);
   });
   
   // 포인터 그리기 (점수 위치)
@@ -491,13 +515,27 @@ function GaugeDisplay({ scorePercent, t }) {
       canvas.width = 560;
       canvas.height = 120;
       
-      // 5개 구간 정의 (이미지와 동일한 스타일)
+      // 10단계 그라데이션 색상 정의 (연두색 → 빨간색)
+      const gradientColors = [
+        '#4CAF50', // 연두색 (좋음)
+        '#66BB6A',
+        '#81C784',
+        '#A5D6A7',
+        '#C8E6C9',
+        '#FFD54F', // 노란색 (중간)
+        '#FFB74D',
+        '#FF8A65',
+        '#E57373',
+        '#F44336'  // 빨간색 (나쁨)
+      ];
+      
+      // 5개 구간 정의 (사람 얼굴 픽토그램)
       const segments = [
-        { min: 0, max: 20, color: '#ff4444', label: 'POOR', emoji: '😞', range: '0-20%' },
-        { min: 21, max: 40, color: '#ff8800', label: 'UNCERTAIN', emoji: '😐', range: '21-40%' },
-        { min: 41, max: 60, color: '#ffcc00', label: 'FAIR', emoji: '😐', range: '41-60%' },
-        { min: 61, max: 80, color: '#88cc00', label: 'GOOD', emoji: '🙂', range: '61-80%' },
-        { min: 81, max: 100, color: '#44cc44', label: 'EXCELLENT', emoji: '😊', range: '81-100%' }
+        { min: 0, max: 20, label: 'EXCELLENT', icon: '😊', range: '81-100%' },
+        { min: 21, max: 40, label: 'GOOD', icon: '🙂', range: '61-80%' },
+        { min: 41, max: 60, label: 'FAIR', icon: '😐', range: '41-60%' },
+        { min: 61, max: 80, label: 'UNCERTAIN', icon: '😕', range: '21-40%' },
+        { min: 81, max: 100, label: 'POOR', icon: '😞', range: '0-20%' }
       ];
       
       // 배경
@@ -506,28 +544,38 @@ function GaugeDisplay({ scorePercent, t }) {
       
       // 게이지 바 그리기
       const barWidth = canvas.width - 40;
-      const segmentWidth = barWidth / 5;
-      const barY = 30;
       const barHeight = 50;
+      const barY = 30;
       
-      segments.forEach((segment, index) => {
-        const x = 20 + index * segmentWidth;
+      // 10단계 그라데이션 바 그리기
+      const segmentWidth = barWidth / 10;
+      
+      for (let i = 0; i < 10; i++) {
+        const x = 20 + i * segmentWidth;
         
-        // 둥근 모서리 게이지 바
-        ctx.fillStyle = segment.color;
+        // 각 구간을 그라데이션 색상으로 그리기
+        ctx.fillStyle = gradientColors[i];
         ctx.beginPath();
         ctx.roundRect(x, barY, segmentWidth, barHeight, 6);
         ctx.fill();
+      }
+      
+      // 5개 구간 라벨과 픽토그램 그리기
+      const labelSegmentWidth = barWidth / 5;
+      
+      segments.forEach((segment, index) => {
+        const x = 20 + index * labelSegmentWidth;
         
         // 라벨
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#333333';
         ctx.font = 'bold 12px Arial, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(segment.label, x + segmentWidth/2, barY + 20);
+        ctx.fillText(segment.label, x + labelSegmentWidth/2, barY + 20);
         
-        // 이모지
-        ctx.font = '16px Arial, sans-serif';
-        ctx.fillText(segment.emoji, x + segmentWidth/2, barY + 40);
+        // 사람 얼굴 픽토그램 (하얀색)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '18px Arial, sans-serif';
+        ctx.fillText(segment.icon, x + labelSegmentWidth/2, barY + 40);
       });
       
       // 포인터 그리기 (점수 위치)
