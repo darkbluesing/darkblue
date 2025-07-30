@@ -766,6 +766,25 @@ function App() {
             {(t("importantList", { returnObjects: true }) || []).map((item, idx) => <li key={idx}>{item}</li>)}
           </ul>
           <button className="submit-btn" style={{ width: 220, fontSize: 18, margin: '18px auto', display: 'block' }} onClick={() => setPage("question")}>{t("start")}</button>
+          
+          {/* 테스트 이미지 다운로드 버튼 (개발용) */}
+          <button 
+            onClick={downloadTestImages}
+            style={{
+              marginTop: 16,
+              padding: '8px 16px',
+              background: '#f0f0f0',
+              color: '#333',
+              border: '1px solid #ddd',
+              borderRadius: '6px',
+              fontSize: '14px',
+              cursor: 'pointer',
+              display: 'block',
+              margin: '16px auto 0 auto'
+            }}
+          >
+            🎨 게이지 스타일 테스트 이미지 다운로드
+          </button>
         </div>
       </div>
     );
