@@ -167,9 +167,10 @@ function generateDefaultOGImage() {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   
-  // 캔버스 크기 설정 (소셜 미디어 최적화)
-  canvas.width = 1200;
-  canvas.height = 630;
+  // 반응형 크기 설정
+  const dimensions = getImageDimensions();
+  canvas.width = dimensions.width;
+  canvas.height = dimensions.height;
   
   // 배경 그리기
   const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -178,29 +179,52 @@ function generateDefaultOGImage() {
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
+  // 반응형 폰트 크기 계산
+  const baseFontSize = Math.min(canvas.width, canvas.height) / 25;
+  const titleFontSize = baseFontSize * 2.5;
+  const subtitleFontSize = baseFontSize * 1.2;
+  const smallFontSize = baseFontSize * 0.9;
+  
   // 제목 그리기
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 64px Arial, sans-serif';
+  ctx.font = `bold ${titleFontSize}px Arial, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText('나의 인종차별적 성향 테스트', canvas.width/2, 200);
+  ctx.fillText('나의 인종차별적 성향 테스트', canvas.width/2, canvas.height * 0.3);
   
   // 부제목
-  ctx.font = '32px Arial, sans-serif';
-  ctx.fillText('무의식적 편견을 탐색하고 다양성에 대한 인식을 높이는', canvas.width/2, 280);
-  ctx.fillText('교육적 도구', canvas.width/2, 320);
+  ctx.font = `${subtitleFontSize}px Arial, sans-serif`;
+  ctx.fillText('무의식적 편견을 탐색하고 다양성에 대한 인식을 높이는', canvas.width/2, canvas.height * 0.45);
+  ctx.fillText('교육적 도구', canvas.width/2, canvas.height * 0.5);
   
   // 아이콘 또는 장식 요소
   ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
   ctx.beginPath();
-  ctx.arc(canvas.width/2, 450, 60, 0, 2 * Math.PI);
+  ctx.arc(canvas.width/2, canvas.height * 0.7, Math.min(canvas.width, canvas.height) * 0.05, 0, 2 * Math.PI);
   ctx.fill();
   
   // 하단 텍스트
   ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-  ctx.font = '24px Arial, sans-serif';
-  ctx.fillText('지금 테스트해보세요', canvas.width/2, 550);
+  ctx.font = `${smallFontSize}px Arial, sans-serif`;
+  ctx.fillText('지금 테스트해보세요', canvas.width/2, canvas.height * 0.85);
   
   return canvas.toDataURL('image/png');
+}
+
+// 디바이스 타입 감지 및 이미지 크기 설정 함수
+function getImageDimensions() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isTablet = /iPad|Android(?=.*\bMobile\b)(?=.*\bSafari\b)/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // 모바일: 9:16 비율 (인스타그램 스토리, 틱톡 등에 최적화)
+    return { width: 1080, height: 1920 };
+  } else if (isTablet) {
+    // 태블릿: 4:3 비율
+    return { width: 1200, height: 900 };
+  } else {
+    // 데스크톱: 16:9 비율 (소셜 미디어 피드에 최적화)
+    return { width: 1200, height: 630 };
+  }
 }
 
 // 결과 이미지 생성 함수
@@ -208,9 +232,10 @@ function generateResultImage(scorePercent, solution, t) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   
-  // 캔버스 크기 설정 (소셜 미디어 최적화)
-  canvas.width = 1200;
-  canvas.height = 630;
+  // 반응형 크기 설정
+  const dimensions = getImageDimensions();
+  canvas.width = dimensions.width;
+  canvas.height = dimensions.height;
   
   // 배경 그리기
   ctx.fillStyle = '#ffffff';
@@ -223,16 +248,24 @@ function generateResultImage(scorePercent, solution, t) {
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
+  // 반응형 폰트 크기 계산
+  const baseFontSize = Math.min(canvas.width, canvas.height) / 25;
+  const titleFontSize = baseFontSize * 2;
+  const scoreFontSize = baseFontSize * 1.8;
+  const subtitleFontSize = baseFontSize * 1.2;
+  const bodyFontSize = baseFontSize * 0.9;
+  const smallFontSize = baseFontSize * 0.7;
+  
   // 제목 그리기
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.font = `bold ${titleFontSize}px Arial, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText(t("resultTitle"), canvas.width/2, 120);
+  ctx.fillText(t("resultTitle"), canvas.width/2, canvas.height * 0.15);
   
   // 점수 원 그리기
   const centerX = canvas.width / 2;
-  const centerY = 280;
-  const radius = 80;
+  const centerY = canvas.height * 0.35;
+  const radius = Math.min(canvas.width, canvas.height) * 0.08;
   
   // 점수 원 배경
   const circleBg = getRedGradient(scorePercent);
@@ -243,24 +276,24 @@ function generateResultImage(scorePercent, solution, t) {
   
   // 점수 텍스트
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.font = `bold ${scoreFontSize}px Arial, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText(`${scorePercent}%`, centerX, centerY + 15);
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + scoreFontSize/3);
   
   // 편견 지수
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 32px Arial, sans-serif';
-  ctx.fillText(t("biasIndex"), centerX, centerY + 140);
+  ctx.font = `bold ${subtitleFontSize}px Arial, sans-serif`;
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + subtitleFontSize);
   
   // 분석 결과 (긴 텍스트는 줄바꿈 처리)
   ctx.fillStyle = '#666666';
-  ctx.font = '24px Arial, sans-serif';
+  ctx.font = `${bodyFontSize}px Arial, sans-serif`;
   ctx.textAlign = 'center';
   
-  const maxWidth = canvas.width - 100;
+  const maxWidth = canvas.width * 0.8;
   const words = solution.analysis.split(' ');
   let line = '';
-  let y = centerY + 200;
+  let y = centerY + radius + subtitleFontSize * 3;
   
   for (let n = 0; n < words.length; n++) {
     const testLine = line + words[n] + ' ';
@@ -270,7 +303,7 @@ function generateResultImage(scorePercent, solution, t) {
     if (testWidth > maxWidth && n > 0) {
       ctx.fillText(line, centerX, y);
       line = words[n] + ' ';
-      y += 35;
+      y += bodyFontSize * 1.4;
     } else {
       line = testLine;
     }
@@ -279,34 +312,40 @@ function generateResultImage(scorePercent, solution, t) {
   
   // 솔루션 제목
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 28px Arial, sans-serif';
-  ctx.fillText(t("solutionsTitle"), centerX, y + 60);
+  ctx.font = `bold ${subtitleFontSize}px Arial, sans-serif`;
+  ctx.fillText(t("solutionsTitle"), centerX, y + subtitleFontSize * 2);
   
   // 첫 번째 솔루션 팁
   if (solution.tips && solution.tips.length > 0) {
     ctx.fillStyle = '#666666';
-    ctx.font = '20px Arial, sans-serif';
-    ctx.fillText(solution.tips[0], centerX, y + 100);
+    ctx.font = `${bodyFontSize * 0.9}px Arial, sans-serif`;
+    ctx.fillText(solution.tips[0], centerX, y + subtitleFontSize * 3);
   }
   
   // 하단 디스클레이머
   ctx.fillStyle = '#888888';
-  ctx.font = '16px Arial, sans-serif';
-  ctx.fillText('이 결과는 교육적 목적으로만 제공됩니다', centerX, canvas.height - 40);
+  ctx.font = `${smallFontSize}px Arial, sans-serif`;
+  ctx.fillText('이 결과는 교육적 목적으로만 제공됩니다', centerX, canvas.height - smallFontSize * 2);
   
   return canvas.toDataURL('image/png');
 }
 
 // 동적 메타 태그 업데이트 함수
 function updateMetaTags(scorePercent, imageDataUrl) {
+  const dimensions = getImageDimensions();
+  
   // Open Graph 메타 태그 업데이트
   const ogTitle = document.querySelector('meta[property="og:title"]');
   const ogDescription = document.querySelector('meta[property="og:description"]');
   const ogImage = document.querySelector('meta[property="og:image"]');
+  const ogImageWidth = document.querySelector('meta[property="og:image:width"]');
+  const ogImageHeight = document.querySelector('meta[property="og:image:height"]');
   
   if (ogTitle) ogTitle.setAttribute('content', `나의 인종차별적 성향 테스트 결과: ${scorePercent}%`);
   if (ogDescription) ogDescription.setAttribute('content', `인종차별적 성향 테스트 결과를 확인해보세요. 점수: ${scorePercent}%`);
   if (ogImage) ogImage.setAttribute('content', imageDataUrl);
+  if (ogImageWidth) ogImageWidth.setAttribute('content', dimensions.width.toString());
+  if (ogImageHeight) ogImageHeight.setAttribute('content', dimensions.height.toString());
   
   // Twitter 메타 태그 업데이트
   const twitterTitle = document.querySelector('meta[property="twitter:title"]');
@@ -346,8 +385,19 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
         window.open(`https://story.kakao.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
         break;
       case 'facebook':
-        // Facebook은 이미지 URL을 직접 지원하지 않으므로 메타 태그 활용
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        // Facebook 앱 연결 (모바일 우선)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) {
+          // 모바일에서는 Facebook 앱으로 연결
+          window.open(`fb://share?u=${encodeURIComponent(url)}`);
+          // 앱이 없으면 웹으로 폴백
+          setTimeout(() => {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+          }, 1000);
+        } else {
+          // 데스크톱에서는 웹으로 연결
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        }
         break;
       case 'tiktok':
         // TikTok은 웹에서 직접 공유가 어려우므로 이미지 다운로드
