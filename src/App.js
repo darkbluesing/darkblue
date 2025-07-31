@@ -616,7 +616,7 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
       </div>
       
       {/* 버튼 영역 */}
-      <div style={{ display: 'flex', gap: 4, justifyContent: 'center', marginTop: 18, marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 2, justifyContent: 'center', marginTop: 18, marginBottom: 24 }}>
         <button className="submit-btn" style={{ width: 140, padding: '12px 16px', fontSize: '0.95rem' }} onClick={onRestart}>{t("restart")}</button>
         <button className="submit-btn" style={{ width: 100, padding: '12px 16px', fontSize: '0.95rem', background: '#fafbfc', color: '#333', border: '1.5px solid #e0e0e0', boxShadow: 'none' }} onClick={onHome}>{t("home")}</button>
       </div>
