@@ -444,3 +444,166 @@ body.dark .dark-btn.active {
   border-color: #6c63ff;
   color: #6c63ff;
 }
+
+/* 결과 페이지 강화 스타일 */
+.result-page {
+  padding: 50px 40px !important;
+  max-width: 100% !important;
+  font-size: 16px !important;
+}
+
+.result-page h2 {
+  font-weight: 700 !important;
+  font-size: 36px !important;
+  margin-bottom: 16px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+.result-page .score-circle {
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  font-size: 48px !important;
+  font-weight: bold !important;
+  margin-bottom: 24px !important;
+}
+
+.result-page .bias-index {
+  font-size: 20px !important;
+  color: #666 !important;
+  text-align: center !important;
+  font-weight: 500 !important;
+}
+
+.result-page .section-title {
+  font-weight: 600 !important;
+  margin: 32px 0 16px 0 !important;
+  font-size: 24px !important;
+}
+
+.result-page .section-content {
+  margin-bottom: 20px !important;
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+.result-page ul {
+  text-align: left !important;
+  padding-left: 28px !important;
+  margin: 0 !important;
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+.result-page li {
+  margin-bottom: 16px !important;
+}
+
+.result-page .disclaimer {
+  margin: 32px 0 !important;
+  font-size: 18px !important;
+  color: #888 !important;
+  line-height: 1.6 !important;
+}
+
+.result-page .button-container {
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  margin-top: 32px !important;
+  margin-bottom: 40px !important;
+}
+
+.result-page .submit-btn {
+  width: 180px !important;
+  padding: 18px 24px !important;
+  font-size: 18px !important;
+}
+
+.result-page .share-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  padding: 20px 28px !important;
+  background: #6c63ff !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 16px !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.result-page .share-button:hover {
+  background: #5a52d5 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4) !important;
+}
+
+/* 반응형 강화 */
+@media (min-width: 700px) {
+  .result-page {
+    padding: 60px 50px !important;
+  }
+  
+  .result-page h2 {
+    font-size: 40px !important;
+  }
+  
+  .result-page .score-circle {
+    width: 220px !important;
+    height: 220px !important;
+    font-size: 52px !important;
+  }
+  
+  .result-page .section-title {
+    font-size: 26px !important;
+  }
+  
+  .result-page .section-content {
+    font-size: 20px !important;
+  }
+  
+  .result-page ul {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .result-page {
+    padding: 30px 20px !important;
+  }
+  
+  .result-page h2 {
+    font-size: 28px !important;
+  }
+  
+  .result-page .score-circle {
+    width: 160px !important;
+    height: 160px !important;
+    font-size: 36px !important;
+  }
+  
+  .result-page .section-title {
+    font-size: 20px !important;
+  }
+  
+  .result-page .section-content {
+    font-size: 16px !important;
+  }
+  
+  .result-page ul {
+    font-size: 16px !important;
+  }
+}

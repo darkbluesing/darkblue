@@ -386,96 +386,157 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
   };
 
   return (
-    <div className="result-page" style={{ padding: '40px 32px', maxWidth: '100%' }}>
-      <h2 style={{ fontWeight: 700, fontSize: '32px', marginBottom: '12px', textAlign: 'center' }}>{t("resultTitle")}</h2>
-      <div style={{ color: '#6c63ff', fontWeight: 600, marginBottom: '20px', fontSize: '18px', textAlign: 'center' }}>{t("resultSubtitle")}</div>
+    <div className="result-page" style={{ 
+      padding: '50px 40px !important', 
+      maxWidth: '100% !important',
+      fontSize: '16px !important'
+    }}>
+      <h2 style={{ 
+        fontWeight: '700 !important', 
+        fontSize: '36px !important', 
+        marginBottom: '16px !important', 
+        textAlign: 'center !important',
+        lineHeight: '1.2 !important'
+      }}>{t("resultTitle")}</h2>
+      <div style={{ 
+        color: '#6c63ff !important', 
+        fontWeight: '600 !important', 
+        marginBottom: '24px !important', 
+        fontSize: '20px !important', 
+        textAlign: 'center !important' 
+      }}>{t("resultSubtitle")}</div>
       
       {/* 점수 표시 */}
       <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        marginBottom: '40px' 
+        display: 'flex !important', 
+        flexDirection: 'column !important', 
+        alignItems: 'center !important', 
+        marginBottom: '50px !important' 
       }}>
         <div style={{
-          width: 160,
-          height: 160,
-          borderRadius: '50%',
-          background: circleBg,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#ffffff',
-          fontSize: '36px',
-          fontWeight: 'bold',
-          boxShadow: `0 6px 30px ${circleBg}55`,
-          marginBottom: '20px'
+          width: '200px !important',
+          height: '200px !important',
+          borderRadius: '50% !important',
+          background: `${circleBg} !important`,
+          display: 'flex !important',
+          alignItems: 'center !important',
+          justifyContent: 'center !important',
+          color: '#ffffff !important',
+          fontSize: '48px !important',
+          fontWeight: 'bold !important',
+          boxShadow: `0 8px 40px ${circleBg}55 !important`,
+          marginBottom: '24px !important'
         }}>
           {scorePercent}%
         </div>
         <div style={{ 
-          fontSize: '18px', 
-          color: '#666', 
-          textAlign: 'center',
-          fontWeight: '500'
+          fontSize: '20px !important', 
+          color: '#666 !important', 
+          textAlign: 'center !important',
+          fontWeight: '500 !important'
         }}>
           {t("biasIndex")}
         </div>
       </div>
       
-      <div style={{ fontWeight: 600, margin: '24px 0 12px 0', fontSize: '20px' }}>{t("analysis")}</div>
-      <div style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6' }}>{solution.analysis}</div>
-      <div style={{ fontWeight: 600, margin: '24px 0 12px 0', fontSize: '20px' }}>{t("solutionsTitle")}</div>
-      <ul style={{ textAlign: 'left', paddingLeft: '24px', margin: 0, fontSize: '16px', lineHeight: '1.6' }}>
+      <div style={{ 
+        fontWeight: '600 !important', 
+        margin: '32px 0 16px 0 !important', 
+        fontSize: '24px !important' 
+      }}>{t("analysis")}</div>
+      <div style={{ 
+        marginBottom: '20px !important', 
+        fontSize: '18px !important', 
+        lineHeight: '1.7 !important' 
+      }}>{solution.analysis}</div>
+      <div style={{ 
+        fontWeight: '600 !important', 
+        margin: '32px 0 16px 0 !important', 
+        fontSize: '24px !important' 
+      }}>{t("solutionsTitle")}</div>
+      <ul style={{ 
+        textAlign: 'left !important', 
+        paddingLeft: '28px !important', 
+        margin: '0 !important', 
+        fontSize: '18px !important', 
+        lineHeight: '1.7 !important' 
+      }}>
         {solution.tips.map((tip, idx) => (
-          <li key={idx} style={{ marginBottom: '12px' }}>{tip}</li>
+          <li key={idx} style={{ marginBottom: '16px !important' }}>{tip}</li>
         ))}
       </ul>
-      <div className="main-disclaimer" style={{ margin: '24px 0', fontSize: '16px', color: '#888', lineHeight: '1.5' }}>
+      <div className="main-disclaimer" style={{ 
+        margin: '32px 0 !important', 
+        fontSize: '18px !important', 
+        color: '#888 !important', 
+        lineHeight: '1.6 !important' 
+      }}>
         <strong>{t("disclaimer")}</strong>
       </div>
       
       {/* 버튼 영역 */}
-      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '24px', marginBottom: '32px' }}>
-        <button className="submit-btn" style={{ width: 160, padding: '16px 20px', fontSize: '16px' }} onClick={onRestart}>{t("restart")}</button>
-        <button className="submit-btn" style={{ width: 120, padding: '16px 20px', fontSize: '16px', background: '#fafbfc', color: '#333', border: '1.5px solid #e0e0e0', boxShadow: 'none' }} onClick={onHome}>{t("home")}</button>
+      <div style={{ 
+        display: 'flex !important', 
+        gap: '16px !important', 
+        justifyContent: 'center !important', 
+        marginTop: '32px !important', 
+        marginBottom: '40px !important' 
+      }}>
+        <button className="submit-btn" style={{ 
+          width: '180px !important', 
+          padding: '18px 24px !important', 
+          fontSize: '18px !important' 
+        }} onClick={onRestart}>{t("restart")}</button>
+        <button className="submit-btn" style={{ 
+          width: '140px !important', 
+          padding: '18px 24px !important', 
+          fontSize: '18px !important', 
+          background: '#fafbfc !important', 
+          color: '#333 !important', 
+          border: '1.5px solid #e0e0e0 !important', 
+          boxShadow: 'none !important' 
+        }} onClick={onHome}>{t("home")}</button>
       </div>
       
       {/* SNS 공유 버튼 영역 */}
-      <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid #eee' }}>
+      <div style={{ 
+        marginTop: '40px !important', 
+        paddingTop: '32px !important', 
+        borderTop: '1px solid #eee !important' 
+      }}>
         <button 
           onClick={() => handleShare('unified')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '12px',
-            width: '100%',
-            maxWidth: '320px',
-            margin: '0 auto',
-            padding: '18px 24px',
-            background: '#6c63ff',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '12px',
-            fontSize: '18px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            boxShadow: '0 4px 12px rgba(108, 99, 255, 0.3)',
-            transition: 'all 0.2s ease'
+            display: 'flex !important',
+            alignItems: 'center !important',
+            justifyContent: 'center !important',
+            gap: '16px !important',
+            width: '100% !important',
+            maxWidth: '360px !important',
+            margin: '0 auto !important',
+            padding: '20px 28px !important',
+            background: '#6c63ff !important',
+            color: '#ffffff !important',
+            border: 'none !important',
+            borderRadius: '16px !important',
+            fontSize: '20px !important',
+            fontWeight: '600 !important',
+            cursor: 'pointer !important',
+            boxShadow: '0 6px 16px rgba(108, 99, 255, 0.3) !important',
+            transition: 'all 0.2s ease !important'
           }}
           onMouseEnter={(e) => {
-            e.target.style.background = '#5a52d5';
-            e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 6px 16px rgba(108, 99, 255, 0.4)';
+            e.target.style.background = '#5a52d5 !important';
+            e.target.style.transform = 'translateY(-3px) !important';
+            e.target.style.boxShadow = '0 8px 20px rgba(108, 99, 255, 0.4) !important';
           }}
           onMouseLeave={(e) => {
-            e.target.style.background = '#6c63ff';
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 4px 12px rgba(108, 99, 255, 0.3)';
+            e.target.style.background = '#6c63ff !important';
+            e.target.style.transform = 'translateY(0) !important';
+            e.target.style.boxShadow = '0 6px 16px rgba(108, 99, 255, 0.3) !important';
           }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
             <polyline points="16,6 12,2 8,6"/>
             <line x1="12" y1="2" x2="12" y2="15"/>
