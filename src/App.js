@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import "./i18n";
@@ -98,44 +98,44 @@ function DarkModeToggle() {
   );
 }
 
-function LandingPage({ onStart, t }) {
-  return (
-    <div className="landing-page">
-      <DarkModeToggle />
-      <h1 id="main-title">{t("title")}</h1>
-      <div id="main-subtitle" style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 12 }}>{t("subtitle")}</div>
-      <div id="main-intro" className="main-intro" style={{ textAlign: 'left', width: '100%', display: 'block' }}>{t("intro")}</div>
-      <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left', width: '100%', display: 'block' }}>
-        <strong>{t("disclaimerLanding")}</strong>
-      </div>
-      <div id="main-important-label" style={{ fontWeight: 600, marginTop: 18 }}>{t("important")}</div>
-      <ul id="main-important-list" style={{ margin: '8px 0 24px 0', paddingLeft: 18, color: '#555', fontSize: 15 }}>
-        {(t("importantList", { returnObjects: true }) || []).map((item, idx) => <li key={idx}>{item}</li>)}
-      </ul>
-      <button className="submit-btn" style={{ width: 220, fontSize: 18, margin: '18px 0' }} onClick={onStart}>{t("start")}</button>
-    </div>
-  );
-}
+// function LandingPage({ onStart, t }) {
+//   return (
+//     <div className="landing-page">
+//       <DarkModeToggle />
+//       <h1 id="main-title">{t("title")}</h1>
+//       <div id="main-subtitle" style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 12 }}>{t("subtitle")}</div>
+//       <div id="main-intro" className="main-intro" style={{ textAlign: 'left', width: '100%', display: 'block' }}>{t("intro")}</div>
+//       <div id="main-disclaimer" className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888', textAlign: 'left', width: '100%', display: 'block' }}>
+//         <strong>{t("disclaimerLanding")}</strong>
+//       </div>
+//       <div id="main-important-label" style={{ fontWeight: 600, marginTop: 18 }}>{t("important")}</div>
+//       <ul id="main-important-list" style={{ margin: '8px 0 24px 0', paddingLeft: 18, color: '#555', fontSize: 15 }}>
+//         {(t("importantList", { returnObjects: true }) || []).map((item, idx) => <li key={idx}>{item}</li>)}
+//       </ul>
+//       <button className="submit-btn" style={{ width: 220, fontSize: 18, margin: '18px 0' }} onClick={onStart}>{t("start")}</button>
+//     </div>
+//   );
+// }
 
-function ProgressBox({ current, total, t }) {
-  return (
-    <div
-      style={{
-        width: "100%",
-        background: "#e9e9ff",
-        borderRadius: 8,
-        padding: "12px 0",
-        marginBottom: 12,
-        textAlign: "center",
-        fontWeight: 600,
-        color: "#6c63ff",
-        fontSize: 15,
-      }}
-    >
-      {t("progress", { current, total })}
-    </div>
-  );
-}
+// function ProgressBox({ current, total, t }) {
+//   return (
+//     <div
+//       style={{
+//         width: "100%",
+//         background: "#e9e9ff",
+//         borderRadius: 8,
+//         padding: "12px 0",
+//         marginBottom: 12,
+//         textAlign: "center",
+//         fontWeight: 600,
+//         color: "#6c63ff",
+//         fontSize: 15,
+//       }}
+//     >
+//       {t("progress", { current, total })}
+//     </div>
+//   );
+// }
 
 function ProgressCard({ current, total, t }) {
   const percent = Math.round(((current + 1) / total) * 100);
@@ -181,21 +181,21 @@ function generateTikTokImage(scorePercent, solution, t) {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // 상단 제목 (위치 조정)
+  // 상단 제목 (크게 확대)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 64px Arial, sans-serif';
+  ctx.font = 'bold 80px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(t("resultTitle"), canvas.width/2, 120);
+  ctx.fillText(t("resultTitle"), canvas.width/2, 140);
   
-  // 부제목 (위치 조정)
+  // 부제목 (크게 확대)
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 40px Arial, sans-serif';
-  ctx.fillText(t("resultSubtitle"), canvas.width/2, 180);
+  ctx.font = 'bold 52px Arial, sans-serif';
+  ctx.fillText(t("resultSubtitle"), canvas.width/2, 210);
   
-  // 점수 원 그리기 (위치 조정)
+  // 점수 원 그리기 (크게 확대)
   const centerX = canvas.width / 2;
-  const centerY = 450; // 위로 이동
-  const radius = 100; // 크기 조정
+  const centerY = 500;
+  const radius = 140; // 크게 확대
   
   // 점수 원 배경 (웹페이지와 동일한 그라데이션)
   const circleBg = getRedGradient(scorePercent);
@@ -206,64 +206,64 @@ function generateTikTokImage(scorePercent, solution, t) {
   
   // 그림자 효과 (웹페이지와 동일)
   ctx.shadowColor = circleBg + '55';
-  ctx.shadowBlur = 40;
+  ctx.shadowBlur = 50;
   ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 15;
+  ctx.shadowOffsetY = 20;
   ctx.fill();
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 0;
   
-  // 점수 텍스트 (크기 조정)
+  // 점수 텍스트 (크게 확대)
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 60px Arial, sans-serif';
+  ctx.font = 'bold 80px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`${scorePercent}%`, centerX, centerY + 18);
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 25);
   
-  // 편견 지수 (위치 조정)
+  // 편견 지수 (크게 확대)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 28px Arial, sans-serif';
-  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 60);
+  ctx.font = 'bold 36px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 80);
   
-  // 분석 제목 (위치 조정)
+  // 분석 제목 (크게 확대)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 32px Arial, sans-serif';
+  ctx.font = 'bold 40px Arial, sans-serif';
   ctx.textAlign = 'left';
-  ctx.fillText(t("analysis"), centerX - 280, centerY + radius + 120);
+  ctx.fillText(t("analysis"), centerX - 300, centerY + radius + 140);
   
-  // 분석 결과 (간격 조정)
+  // 분석 결과 (크게 확대)
   ctx.fillStyle = '#333333';
-  ctx.font = '24px Arial, sans-serif';
+  ctx.font = '30px Arial, sans-serif';
   ctx.textAlign = 'left';
   
-  const maxWidth = 560; // 텍스트 영역 조정
-  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 32);
-  let y = centerY + radius + 160; // 시작 위치 조정
+  const maxWidth = 600; // 텍스트 영역 확대
+  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 38);
+  let y = centerY + radius + 180;
   
   analysisLines.forEach((line, index) => {
-    ctx.fillText(line, centerX - 280, y + (index * 32));
+    ctx.fillText(line, centerX - 300, y + (index * 38));
   });
   
-  y += analysisLines.length * 32 + 50; // 간격 조정
+  y += analysisLines.length * 38 + 60;
   
-  // 솔루션 제목 (위치 조정)
+  // 솔루션 제목 (크게 확대)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 32px Arial, sans-serif';
-  ctx.fillText(t("solutionsTitle"), centerX - 280, y);
+  ctx.font = 'bold 40px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX - 300, y);
   
-  // 솔루션 팁들 (간격 대폭 조정)
+  // 솔루션 팁들 (크게 확대)
   if (solution.tips && solution.tips.length > 0) {
     ctx.fillStyle = '#333333';
-    ctx.font = '24px Arial, sans-serif';
+    ctx.font = '30px Arial, sans-serif';
     
     const maxTips = Math.min(3, solution.tips.length);
     for (let i = 0; i < maxTips; i++) {
       const tip = solution.tips[i];
-      const tipY = y + 50 + (i * 120); // 간격 대폭 증가
+      const tipY = y + 60 + (i * 140); // 간격 확대
       
       // 글머리 기호
-      ctx.fillText('•', centerX - 280, tipY);
+      ctx.fillText('•', centerX - 300, tipY);
       
       // 팁 텍스트 (줄바꿈 개선)
       const tipWords = tip.split(' ');
@@ -275,29 +275,29 @@ function generateTikTokImage(scorePercent, solution, t) {
         const tipMetrics = ctx.measureText(testTipLine);
         const tipTestWidth = tipMetrics.width;
         
-        if (tipTestWidth > 520 && j > 0) { // 텍스트 영역 조정
-          ctx.fillText(tipLine, centerX - 260, tipLineY);
+        if (tipTestWidth > 560 && j > 0) { // 텍스트 영역 확대
+          ctx.fillText(tipLine, centerX - 280, tipLineY);
           tipLine = tipWords[j] + ' ';
-          tipLineY += 32; // 줄 간격 조정
+          tipLineY += 38; // 줄 간격 확대
         } else {
           tipLine = testTipLine;
         }
       }
-      ctx.fillText(tipLine, centerX - 260, tipLineY);
+      ctx.fillText(tipLine, centerX - 280, tipLineY);
     }
   }
   
-  // 하단 디스클레이머 (위치 조정)
+  // 하단 디스클레이머 (크게 확대)
   ctx.fillStyle = '#888888';
-  ctx.font = '20px Arial, sans-serif';
+  ctx.font = '26px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(t("disclaimer"), centerX, canvas.height - 120);
+  ctx.fillText(t("disclaimer"), centerX, canvas.height - 140);
   
-  // 웹사이트 주소 (위치 조정)
+  // 웹사이트 주소 (크게 확대)
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 24px Arial, sans-serif';
+  ctx.font = 'bold 30px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('https://areyoubiased.life', centerX, canvas.height - 60);
+  ctx.fillText('https://areyoubiased.life', centerX, canvas.height - 80);
   
   return canvas.toDataURL('image/png');
 }
@@ -386,95 +386,96 @@ function ResultPage({ scorePercent, solution, t, onRestart, onHome }) {
   };
 
   return (
-    <div className="result-page">
-      <h2 style={{ fontWeight: 700, fontSize: 24, marginBottom: 8 }}>{t("resultTitle")}</h2>
-      <div style={{ color: '#6c63ff', fontWeight: 600, marginBottom: 8 }}>{t("resultSubtitle")}</div>
+    <div className="result-page" style={{ padding: '40px 32px', maxWidth: '100%' }}>
+      <h2 style={{ fontWeight: 700, fontSize: '32px', marginBottom: '12px', textAlign: 'center' }}>{t("resultTitle")}</h2>
+      <div style={{ color: '#6c63ff', fontWeight: 600, marginBottom: '20px', fontSize: '18px', textAlign: 'center' }}>{t("resultSubtitle")}</div>
       
       {/* 점수 표시 */}
       <div style={{ 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
-        marginBottom: 32 
+        marginBottom: '40px' 
       }}>
         <div style={{
-          width: 110,
-          height: 110,
+          width: 160,
+          height: 160,
           borderRadius: '50%',
           background: circleBg,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#ffffff',
-          fontSize: '24px',
+          fontSize: '36px',
           fontWeight: 'bold',
-          boxShadow: `0 4px 20px ${circleBg}55`,
-          marginBottom: 16
+          boxShadow: `0 6px 30px ${circleBg}55`,
+          marginBottom: '20px'
         }}>
           {scorePercent}%
         </div>
         <div style={{ 
-          fontSize: '14px', 
+          fontSize: '18px', 
           color: '#666', 
-          textAlign: 'center' 
+          textAlign: 'center',
+          fontWeight: '500'
         }}>
           {t("biasIndex")}
         </div>
       </div>
       
-      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("analysis")}</div>
-      <div style={{ marginBottom: 12 }}>{solution.analysis}</div>
-      <div style={{ fontWeight: 600, margin: '18px 0 8px 0' }}>{t("solutionsTitle")}</div>
-      <ul style={{ textAlign: 'left', paddingLeft: 18, margin: 0 }}>
+      <div style={{ fontWeight: 600, margin: '24px 0 12px 0', fontSize: '20px' }}>{t("analysis")}</div>
+      <div style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6' }}>{solution.analysis}</div>
+      <div style={{ fontWeight: 600, margin: '24px 0 12px 0', fontSize: '20px' }}>{t("solutionsTitle")}</div>
+      <ul style={{ textAlign: 'left', paddingLeft: '24px', margin: 0, fontSize: '16px', lineHeight: '1.6' }}>
         {solution.tips.map((tip, idx) => (
-          <li key={idx} style={{ marginBottom: 6 }}>{tip}</li>
+          <li key={idx} style={{ marginBottom: '12px' }}>{tip}</li>
         ))}
       </ul>
-      <div className="main-disclaimer" style={{ margin: '18px 0', fontSize: 15, color: '#888' }}>
+      <div className="main-disclaimer" style={{ margin: '24px 0', fontSize: '16px', color: '#888', lineHeight: '1.5' }}>
         <strong>{t("disclaimer")}</strong>
       </div>
       
       {/* 버튼 영역 */}
-      <div style={{ display: 'flex', gap: 2, justifyContent: 'center', marginTop: 18, marginBottom: 24 }}>
-        <button className="submit-btn" style={{ width: 140, padding: '12px 16px', fontSize: '0.95rem' }} onClick={onRestart}>{t("restart")}</button>
-        <button className="submit-btn" style={{ width: 100, padding: '12px 16px', fontSize: '0.95rem', background: '#fafbfc', color: '#333', border: '1.5px solid #e0e0e0', boxShadow: 'none' }} onClick={onHome}>{t("home")}</button>
+      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '24px', marginBottom: '32px' }}>
+        <button className="submit-btn" style={{ width: 160, padding: '16px 20px', fontSize: '16px' }} onClick={onRestart}>{t("restart")}</button>
+        <button className="submit-btn" style={{ width: 120, padding: '16px 20px', fontSize: '16px', background: '#fafbfc', color: '#333', border: '1.5px solid #e0e0e0', boxShadow: 'none' }} onClick={onHome}>{t("home")}</button>
       </div>
       
       {/* SNS 공유 버튼 영역 */}
-      <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid #eee' }}>
+      <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid #eee' }}>
         <button 
           onClick={() => handleShare('unified')}
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 8,
+            gap: '12px',
             width: '100%',
-            maxWidth: 280,
+            maxWidth: '320px',
             margin: '0 auto',
-            padding: '12px 20px',
+            padding: '18px 24px',
             background: '#6c63ff',
             color: '#ffffff',
             border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
+            borderRadius: '12px',
+            fontSize: '18px',
             fontWeight: '600',
             cursor: 'pointer',
-            boxShadow: '0 2px 8px rgba(108, 99, 255, 0.3)',
+            boxShadow: '0 4px 12px rgba(108, 99, 255, 0.3)',
             transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
             e.target.style.background = '#5a52d5';
-            e.target.style.transform = 'translateY(-1px)';
-            e.target.style.boxShadow = '0 4px 12px rgba(108, 99, 255, 0.4)';
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 6px 16px rgba(108, 99, 255, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.target.style.background = '#6c63ff';
             e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 2px 8px rgba(108, 99, 255, 0.3)';
+            e.target.style.boxShadow = '0 4px 12px rgba(108, 99, 255, 0.3)';
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
             <polyline points="16,6 12,2 8,6"/>
             <line x1="12" y1="2" x2="12" y2="15"/>
