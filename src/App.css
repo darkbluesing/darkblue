@@ -445,165 +445,201 @@ body.dark .dark-btn.active {
   color: #6c63ff;
 }
 
-/* 결과 페이지 강화 스타일 */
+/* 결과 페이지 스타일 */
 .result-page {
-  padding: 50px 40px !important;
-  max-width: 100% !important;
-  font-size: 16px !important;
+  padding: 50px 40px;
+  max-width: 100%;
+  font-size: 16px;
 }
 
-.result-page h2 {
-  font-weight: 700 !important;
-  font-size: 36px !important;
-  margin-bottom: 16px !important;
-  text-align: center !important;
-  line-height: 1.2 !important;
+.result-title {
+  font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 16px;
+  text-align: center;
+  line-height: 1.2;
+  color: #333;
 }
 
-.result-page .score-circle {
-  width: 200px !important;
-  height: 200px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: #ffffff !important;
-  font-size: 48px !important;
-  font-weight: bold !important;
-  margin-bottom: 24px !important;
+.result-subtitle {
+  color: #6c63ff;
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-size: 20px;
+  text-align: center;
 }
 
-.result-page .bias-index {
-  font-size: 20px !important;
-  color: #666 !important;
-  text-align: center !important;
-  font-weight: 500 !important;
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
-.result-page .section-title {
-  font-weight: 600 !important;
-  margin: 32px 0 16px 0 !important;
-  font-size: 24px !important;
+.score-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
 }
 
-.result-page .section-content {
-  margin-bottom: 20px !important;
-  font-size: 18px !important;
-  line-height: 1.7 !important;
+.bias-index {
+  font-size: 20px;
+  color: #666;
+  text-align: center;
+  font-weight: 500;
 }
 
-.result-page ul {
-  text-align: left !important;
-  padding-left: 28px !important;
-  margin: 0 !important;
-  font-size: 18px !important;
-  line-height: 1.7 !important;
+.section-title {
+  font-weight: 600;
+  margin: 32px 0 16px 0;
+  font-size: 24px;
+  color: #333;
 }
 
-.result-page li {
-  margin-bottom: 16px !important;
+.section-content {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555;
 }
 
-.result-page .disclaimer {
-  margin: 32px 0 !important;
-  font-size: 18px !important;
-  color: #888 !important;
-  line-height: 1.6 !important;
+.solutions-list {
+  text-align: left;
+  padding-left: 28px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555;
 }
 
-.result-page .button-container {
-  display: flex !important;
-  gap: 16px !important;
-  justify-content: center !important;
-  margin-top: 32px !important;
-  margin-bottom: 40px !important;
+.solutions-list li {
+  margin-bottom: 16px;
 }
 
-.result-page .submit-btn {
-  width: 180px !important;
-  padding: 18px 24px !important;
-  font-size: 18px !important;
+.disclaimer {
+  margin: 32px 0;
+  font-size: 18px;
+  color: #888;
+  line-height: 1.6;
 }
 
-.result-page .share-button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 16px !important;
-  width: 100% !important;
-  max-width: 360px !important;
-  margin: 0 auto !important;
-  padding: 20px 28px !important;
-  background: #6c63ff !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-radius: 16px !important;
-  font-size: 20px !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
-  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.3) !important;
-  transition: all 0.2s ease !important;
+.button-container {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 40px;
 }
 
-.result-page .share-button:hover {
-  background: #5a52d5 !important;
-  transform: translateY(-3px) !important;
-  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4) !important;
+.restart-btn {
+  width: 180px;
+  padding: 18px 24px;
+  font-size: 18px;
 }
 
-/* 반응형 강화 */
+.home-btn {
+  width: 140px;
+  padding: 18px 24px;
+  font-size: 18px;
+  background: #fafbfc;
+  color: #333;
+  border: 1.5px solid #e0e0e0;
+  box-shadow: none;
+}
+
+.share-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #eee;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 20px 28px;
+  background: #6c63ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.share-button:hover {
+  background: #5a52d5;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
+}
+
+/* 반응형 스타일 */
 @media (min-width: 700px) {
   .result-page {
-    padding: 60px 50px !important;
+    padding: 60px 50px;
   }
   
-  .result-page h2 {
-    font-size: 40px !important;
+  .result-title {
+    font-size: 40px;
   }
   
-  .result-page .score-circle {
-    width: 220px !important;
-    height: 220px !important;
-    font-size: 52px !important;
+  .score-circle {
+    width: 220px;
+    height: 220px;
+    font-size: 52px;
   }
   
-  .result-page .section-title {
-    font-size: 26px !important;
+  .section-title {
+    font-size: 26px;
   }
   
-  .result-page .section-content {
-    font-size: 20px !important;
+  .section-content {
+    font-size: 20px;
   }
   
-  .result-page ul {
-    font-size: 20px !important;
+  .solutions-list {
+    font-size: 20px;
   }
 }
 
 @media (max-width: 600px) {
   .result-page {
-    padding: 30px 20px !important;
+    padding: 30px 20px;
   }
   
-  .result-page h2 {
-    font-size: 28px !important;
+  .result-title {
+    font-size: 28px;
   }
   
-  .result-page .score-circle {
-    width: 160px !important;
-    height: 160px !important;
-    font-size: 36px !important;
+  .score-circle {
+    width: 160px;
+    height: 160px;
+    font-size: 36px;
   }
   
-  .result-page .section-title {
-    font-size: 20px !important;
+  .section-title {
+    font-size: 20px;
   }
   
-  .result-page .section-content {
-    font-size: 16px !important;
+  .section-content {
+    font-size: 16px;
   }
   
-  .result-page ul {
-    font-size: 16px !important;
+  .solutions-list {
+    font-size: 16px;
   }
 }
