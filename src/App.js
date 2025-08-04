@@ -73,6 +73,13 @@ function LangDarkRow({ lang, onLang, onDark, dark }) {
 function DarkModeToggle() {
   // 항상 라이트 모드로 시작
   const [dark, setDark] = useState(false);
+
+  // 앱이 처음 로드될 때 무조건 라이트모드로 강제
+  useEffect(() => {
+    document.body.classList.remove('dark');
+    localStorage.setItem('darkmode', '0');
+  }, []);
+
   useEffect(() => {
     if (dark) {
       document.body.classList.add('dark');
@@ -82,6 +89,7 @@ function DarkModeToggle() {
       localStorage.setItem('darkmode', '0');
     }
   }, [dark]);
+
   return (
     <button
       id="darkmode-toggle"
