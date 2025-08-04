@@ -701,3 +701,8 @@ body.dark .home-btn {
   color: #fff !important;
   border: 1.5px solid #444 !important;
 }
+
+body.dark #main-important-list,
+body.dark #main-important-list li {
+  color: #fff !important;
+}
