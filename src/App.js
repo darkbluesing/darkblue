@@ -71,13 +71,9 @@ function LangDarkRow({ lang, onLang, onDark, dark }) {
 }
 
 function DarkModeToggle() {
-  const [dark, setDark] = useState(() => {
-    const pref = localStorage.getItem('darkmode');
-    if (pref === '1') return true;
-    if (pref === '0') return false;
-    return false; // 기본값을 라이트모드로 설정
-  });
-  React.useEffect(() => {
+  // 항상 라이트 모드로 시작
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
     if (dark) {
       document.body.classList.add('dark');
       localStorage.setItem('darkmode', '1');
