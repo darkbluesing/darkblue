@@ -149,13 +149,12 @@ function ProgressCard({ current, total, t }) {
 }
 
 function getRedGradient(percent) {
-  // 0%: #ffe5e5 (연한 붉은색), 100%: #b71c1c (짙은 붉은색)
-  const start = { r: 255, g: 229, b: 229 };
-  const end = { r: 183, g: 28, b: 28 };
-  const r = Math.round(start.r + (end.r - start.r) * (percent / 100));
-  const g = Math.round(start.g + (end.g - start.g) * (percent / 100));
-  const b = Math.round(start.b + (end.b - start.b) * (percent / 100));
-  return `rgb(${r},${g},${b})`;
+  // percent: 0~100
+  // 0%: 진한 빨강, 100%: 밝은 분홍
+  // HSL(0, S%, L%)
+  const s = 80 - (percent * 0.5); // 채도: 80%~30%
+  const l = 35 + (percent * 0.4); // 명도: 35%~75%
+  return `hsl(0, ${s}%, ${l}%)`;
 }
 
 // 디바이스 타입 감지 및 이미지 크기 설정 함수
