@@ -175,133 +175,126 @@ function getImageDimensions() {
 function generateTikTokImage(scorePercent, solution, t) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  
+
   // 모바일 최적화 크기 (세로형 비율)
   canvas.width = 1080;
   canvas.height = 1920;
-  
+
   // 배경 - 웹페이지와 동일한 흰색 배경
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  // 상단 제목 (크게 확대)
+
+  // 상단 제목 (더 크게)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 80px Arial, sans-serif';
+  ctx.font = 'bold 100px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(t("resultTitle"), canvas.width/2, 140);
-  
-  // 부제목 (크게 확대)
+  ctx.fillText(t("resultTitle"), canvas.width/2, 180);
+
+  // 부제목 (더 크게)
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 52px Arial, sans-serif';
-  ctx.fillText(t("resultSubtitle"), canvas.width/2, 210);
-  
-  // 점수 원 그리기 (크게 확대)
+  ctx.font = 'bold 60px Arial, sans-serif';
+  ctx.fillText(t("resultSubtitle"), canvas.width/2, 270);
+
+  // 점수 원 그리기 (더 크게)
   const centerX = canvas.width / 2;
-  const centerY = 500;
-  const radius = 140; // 크게 확대
-  
+  const centerY = 600;
+  const radius = 220;
+
   // 점수 원 배경 (웹페이지와 동일한 그라데이션)
   const circleBg = getRedGradient(scorePercent);
   ctx.fillStyle = circleBg;
   ctx.beginPath();
   ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
   ctx.fill();
-  
+
   // 그림자 효과 (웹페이지와 동일)
+  ctx.save();
   ctx.shadowColor = circleBg + '55';
-  ctx.shadowBlur = 50;
+  ctx.shadowBlur = 80;
   ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 20;
+  ctx.shadowOffsetY = 30;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
   ctx.fill();
-  ctx.shadowColor = 'transparent';
-  ctx.shadowBlur = 0;
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 0;
-  
-  // 점수 텍스트 (크게 확대)
+  ctx.restore();
+
+  // 점수 텍스트 (더 크게)
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 80px Arial, sans-serif';
+  ctx.font = 'bold 120px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`${scorePercent}%`, centerX, centerY + 25);
-  
-  // 편견 지수 (크게 확대)
+  ctx.fillText(`${scorePercent}%`, centerX, centerY + 40);
+
+  // 편견 지수 (더 크게)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 36px Arial, sans-serif';
-  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 80);
-  
-  // 분석 제목 (크게 확대)
+  ctx.font = 'bold 48px Arial, sans-serif';
+  ctx.fillText(t("biasIndex"), centerX, centerY + radius + 90);
+
+  // 분석 제목 (더 크게)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 40px Arial, sans-serif';
+  ctx.font = 'bold 54px Arial, sans-serif';
   ctx.textAlign = 'left';
-  ctx.fillText(t("analysis"), centerX - 300, centerY + radius + 140);
-  
-  // 분석 결과 (크게 확대)
+  ctx.fillText(t("analysis"), centerX - 420, centerY + radius + 180);
+
+  // 분석 결과 (더 크게, 줄바꿈 넉넉하게)
   ctx.fillStyle = '#333333';
-  ctx.font = '30px Arial, sans-serif';
+  ctx.font = '44px Arial, sans-serif';
   ctx.textAlign = 'left';
-  
-  const maxWidth = 600; // 텍스트 영역 확대
-  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, 38);
-  let y = centerY + radius + 180;
-  
+  const maxWidth = 900;
+  const lineHeight = 56;
+  const analysisLines = wrapText(ctx, solution.analysis, maxWidth, lineHeight);
+  let y = centerY + radius + 240;
   analysisLines.forEach((line, index) => {
-    ctx.fillText(line, centerX - 300, y + (index * 38));
+    ctx.fillText(line, centerX - 420, y + (index * lineHeight));
   });
-  
-  y += analysisLines.length * 38 + 60;
-  
-  // 솔루션 제목 (크게 확대)
+  y += analysisLines.length * lineHeight + 80;
+
+  // 솔루션 제목 (더 크게)
   ctx.fillStyle = '#333333';
-  ctx.font = 'bold 40px Arial, sans-serif';
-  ctx.fillText(t("solutionsTitle"), centerX - 300, y);
-  
-  // 솔루션 팁들 (크게 확대)
+  ctx.font = 'bold 54px Arial, sans-serif';
+  ctx.fillText(t("solutionsTitle"), centerX - 420, y);
+
+  // 솔루션 팁들 (더 크게, 줄바꿈 넉넉하게)
   if (solution.tips && solution.tips.length > 0) {
     ctx.fillStyle = '#333333';
-    ctx.font = '30px Arial, sans-serif';
-    
+    ctx.font = '44px Arial, sans-serif';
     const maxTips = Math.min(3, solution.tips.length);
     for (let i = 0; i < maxTips; i++) {
       const tip = solution.tips[i];
-      const tipY = y + 60 + (i * 140); // 간격 확대
-      
+      const tipY = y + 80 + (i * 180);
       // 글머리 기호
-      ctx.fillText('•', centerX - 300, tipY);
-      
+      ctx.fillText('•', centerX - 420, tipY);
       // 팁 텍스트 (줄바꿈 개선)
       const tipWords = tip.split(' ');
       let tipLine = '';
       let tipLineY = tipY;
-      
       for (let j = 0; j < tipWords.length; j++) {
         const testTipLine = tipLine + tipWords[j] + ' ';
         const tipMetrics = ctx.measureText(testTipLine);
         const tipTestWidth = tipMetrics.width;
-        
-        if (tipTestWidth > 560 && j > 0) { // 텍스트 영역 확대
-          ctx.fillText(tipLine, centerX - 280, tipLineY);
+        if (tipTestWidth > 820 && j > 0) {
+          ctx.fillText(tipLine, centerX - 390, tipLineY);
           tipLine = tipWords[j] + ' ';
-          tipLineY += 38; // 줄 간격 확대
+          tipLineY += lineHeight;
         } else {
           tipLine = testTipLine;
         }
       }
-      ctx.fillText(tipLine, centerX - 280, tipLineY);
+      ctx.fillText(tipLine, centerX - 390, tipLineY);
     }
   }
-  
-  // 하단 디스클레이머 (크게 확대)
+
+  // 하단 디스클레이머 (더 크게)
   ctx.fillStyle = '#888888';
-  ctx.font = '26px Arial, sans-serif';
+  ctx.font = '32px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(t("disclaimer"), centerX, canvas.height - 140);
-  
-  // 웹사이트 주소 (크게 확대)
+  ctx.fillText(t("disclaimer"), centerX, canvas.height - 120);
+
+  // 웹사이트 주소 (더 크게)
   ctx.fillStyle = '#6c63ff';
-  ctx.font = 'bold 30px Arial, sans-serif';
+  ctx.font = 'bold 38px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('https://areyoubiased.life', centerX, canvas.height - 80);
-  
+  ctx.fillText('https://areyoubiased.life', centerX, canvas.height - 60);
+
   return canvas.toDataURL('image/png');
 }
 
@@ -464,6 +457,12 @@ function App() {
       localStorage.setItem('darkmode', '0');
     }
   }, [dark]);
+
+  // 앱이 처음 로드될 때 무조건 라이트모드로 강제
+  useEffect(() => {
+    document.body.classList.remove('dark');
+    localStorage.setItem('darkmode', '0');
+  }, []);
 
   // 결과 계산
   const maxScore = questions.reduce((sum, q) => {
